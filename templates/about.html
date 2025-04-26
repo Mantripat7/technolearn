@@ -1,0 +1,355 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+
+<!-- Page Banner Start -->
+<div class="section page-banner">
+
+    <img class="shape-1 animation-round" src="{% static 'images/shape/shape-8.png' %}" alt="Shape">
+
+    <img class="shape-2" src="{% static 'images/shape/shape-23.png' %}" alt="Shape">
+
+    <div class="container">
+        <!-- Page Banner Start -->
+        <div class="page-banner-content">
+            <ul class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li class="active">About</li>
+            </ul>
+            <h2 class="title">About <span>TechnoLearn</span></h2>
+        </div>
+        <!-- Page Banner End -->
+    </div>
+
+    <!-- Shape Icon Box Start -->
+    <div class="shape-icon-box">
+
+        <img class="icon-shape-1 animation-left" src="{% static 'images/shape/shape-5.png' %}" alt="Shape">
+
+        <div class="box-content">
+            <div class="box-wrapper">
+                <i class="flaticon-badge"></i>
+            </div>
+        </div>
+
+        <img class="icon-shape-2" src="{% static 'images/shape/shape-6.png' %}" alt="Shape">
+
+    </div>
+    <!-- Shape Icon Box End -->
+
+    <img class="shape-3" src="{% static 'images/shape/shape-24.png' %}" alt="Shape">
+
+    <img class="shape-author" src="{% static 'images/author/author-11.jpg' %}" alt="Shape">
+
+</div>
+<!-- Page Banner End -->
+
+<!-- About Start -->
+<div class="section">
+
+    <div class="section-padding-02 mt-n10">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+
+                    <!-- About Images Start -->
+                    <div class="about-images">
+                        <div class="images">
+                            <img src="{% static 'images/about.jpg' %}" alt="About">
+                        </div>
+
+                        <div class="about-years">
+                            <div class="years-icon">
+                                <img src="{% static 'images/logo-icon.png' %}" alt="About">
+                            </div>
+                            <p><strong>28+</strong> Years Experience</p>
+                        </div>
+                    </div>
+                    <!-- About Images End -->
+
+                </div>
+                <div class="col-lg-6">
+
+                    <!-- About Content Start -->
+                    <div class="about-content">
+                        <h5 class="sub-title">Welcome to TechnoLearn.</h5>
+                        <h2 class="main-title">You can join with TechnoLearn & upgrade your skill for <span>bright
+                                future.</span>
+                        </h2>
+                        <p>Join and step in upgrading your skills for a
+                            successful future.Whether you're
+                            just starting out or looking to enhance your expertise, we provide the tools, resources, and
+                            guidance to help you grow.</p>
+                        {% if user_login %}
+                        <a href="{% url 'course_list' %}" class="btn btn-primary btn-hover-dark">Start A Course</a>
+                        {% else %}
+                        <a href="{% url 'login' %}" class="btn btn-primary btn-hover-dark">Start A Course</a>
+                        {% endif %}
+
+                    </div>
+                    <!-- About Content End -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-padding-02 mt-n6">
+        <div class="container">
+
+            <!-- About Items Wrapper Start -->
+            <div class="about-items-wrapper">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <!-- About Item Start -->
+                        <div class="about-item">
+                            <div class="item-icon-title">
+                                <div class="item-icon">
+                                    <i class="flaticon-tutor"></i>
+                                </div>
+                                <div class="item-title">
+                                    <h3 class="title">Top Instructors</h3>
+                                </div>
+                            </div>
+                            <p>TechnoLearn partners with top industry experts from leading platforms worldwide to
+                                deliver high-quality, up-to-date
+                                courses that enhance your development and career growth.</p>
+                            <p>Every instructor is selected for practical expertise and teaching skill, ensuring
+                                engaging, dynamic, hands-on learning
+                                experiences.</p>
+                        </div>
+                        <!-- About Item End -->
+                    </div>
+                    <div class="col-lg-4">
+                        <!-- About Item Start -->
+                        <div class="about-item">
+                            <div class="item-icon-title">
+                                <div class="item-icon">
+                                    <i class="flaticon-coding"></i>
+                                </div>
+                                <div class="item-title">
+                                    <h3 class="title">Portable Program</h3>
+                                </div>
+                            </div>
+                            <p>Access courses anytime, anywhere, on any device with seamless streaming, downloadable
+                                content, and synchronized
+                                personalized progress that adapts to your busy schedule.
+                            </p>
+                            <p>Enjoy offline downloads, mobile-friendly layouts, and cross-platform compatibility for
+                                fast, uninterrupted learning on
+                                any internet connection.</p>
+                        </div>
+                        <!-- About Item End -->
+                    </div>
+                    <div class="col-lg-4">
+                        <!-- About Item Start -->
+                        <div class="about-item">
+                            <div class="item-icon-title">
+                                <div class="item-icon">
+                                    <i class="flaticon-increase"></i>
+                                </div>
+                                <div class="item-title">
+                                    <h3 class="title">Improve Quickly</h3>
+                                </div>
+                            </div>
+                            <p>Accelerate your progress with targeted learning paths, interactive assessments, and
+                                expert feedback, helping you master
+                                new skills faster than traditional education methods.
+                            </p>
+                            <p>Track progress, earn certificates, and access peer support to stay motivated and
+                                continuously improve your knowledge.</p>
+                        </div>
+                        <!-- About Item End -->
+                    </div>
+                </div>
+            </div>
+            <!-- About Items Wrapper End -->
+
+        </div>
+    </div>
+
+</div>
+<!-- About End -->
+
+
+<!-- Team Member's Start -->
+<div class="section section-padding mt-n1">
+    <div class="container">
+
+        <!-- Section Title Start -->
+        <div class="section-title shape-03 text-center">
+            <h5 class="sub-title"> Free Content</h5>
+            <h2 class="main-title"> From <span>Top Platforms</span></h2>
+        </div>
+        <!-- Section Title End -->
+        <div class="brand-logo-wrapper mt-2 ">
+
+            <!-- Brand Logo Start -->
+            <div class="brand-logo brand-active pt-0">
+                <div
+                    class="swiper-container swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events">
+                    <div class="swiper-wrapper" id="swiper-wrapper-11c92b2a871432c1" aria-live="off"
+                        style="transform: translate3d(-1525px, 0px, 0px); transition-duration: 0ms;">
+                        <div class=" swiper-slide swiper-slide-duplicate" role="group" aria-label="8 / 16"
+                            data-swiper-slide-index="2" style="width: 132.5px; margin-right: 20px;">
+                            <img src="{% static 'images/brand/brand-03.png' %}" alt="Brand">
+                        </div>
+                        <div class=" swiper-slide swiper-slide-duplicate" role="group" aria-label="9 / 16"
+                            data-swiper-slide-index="3" style="width: 132.5px; margin-right: 20px;">
+                            <img src="{% static 'images/brand/brand-04.png' %}" alt="Brand">
+                        </div>
+                        <div class=" swiper-slide swiper-slide-duplicate" role="group" aria-label="10 / 16"
+                            style="width: 132.5px; margin-right: 20px;" data-swiper-slide-index="4">
+                            <img src="{% static 'images/brand/brand-05.png' %}" alt="Brand">
+                        </div>
+                        <div class=" swiper-slide swiper-slide-duplicate swiper-slide-duplicate-prev" role="group"
+                            aria-label="11 / 16" style="width: 132.5px; margin-right: 20px;"
+                            data-swiper-slide-index="5">
+                            <img src="{% static 'images/brand/brand-06.png' %}" alt="Brand">
+                        </div>
+
+                        <!-- Single Brand Start -->
+                        <div class=" swiper-slide swiper-slide-duplicate-active" role="group" aria-label="6 / 16"
+                            style="width: 132.5px; margin-right: 20px;" data-swiper-slide-index="0">
+                            <img src="{% static 'images/brand/brand-01.png' %}" alt="Brand">
+                        </div>
+                        <!-- Single Brand End -->
+
+                        <!-- Single Brand Start -->
+                        <div class=" swiper-slide swiper-slide-duplicate-next" role="group" aria-label="7 / 16"
+                            style="width: 132.5px; margin-right: 20px;" data-swiper-slide-index="1">
+                            <img src="{% static 'images/brand/brand-02.png' %}" alt="Brand">
+                        </div>
+                        <!-- Single Brand End -->
+
+                        <!-- Single Brand Start -->
+                        <div class=" swiper-slide" role="group" aria-label="8 / 16" data-swiper-slide-index="2"
+                            style="width: 132.5px; margin-right: 20px;">
+                            <img src="{% static 'images/brand/brand-03.png' %}" alt="Brand">
+                        </div>
+                        <!-- Single Brand End -->
+
+                        <!-- Single Brand Start -->
+                        <div class=" swiper-slide" role="group" aria-label="9 / 16" data-swiper-slide-index="3"
+                            style="width: 132.5px; margin-right: 20px;">
+                            <img src="{% static 'images/brand/brand-04.png' %}" alt="Brand">
+                        </div>
+                        <!-- Single Brand End -->
+
+                        <!-- Single Brand Start -->
+                        <div class=" swiper-slide" role="group" aria-label="10 / 16"
+                            style="width: 132.5px; margin-right: 20px;" data-swiper-slide-index="4">
+                            <img src="{% static 'images/brand/brand-05.png' %}" alt="Brand">
+                        </div>
+                        <!-- Single Brand End -->
+
+                        <!-- Single Brand Start -->
+                        <div class=" swiper-slide swiper-slide-prev" role="group" aria-label="11 / 16"
+                            style="width: 132.5px; margin-right: 20px;" data-swiper-slide-index="5">
+                            <img src="{% static 'images/brand/brand-06.png' %}" alt="Brand">
+                        </div>
+                        <!-- Single Brand End -->
+
+                        <div class=" swiper-slide swiper-slide-duplicate swiper-slide-active" role="group"
+                            aria-label="6 / 16" style="width: 132.5px; margin-right: 20px;" data-swiper-slide-index="0">
+                            <img src="{% static 'images/brand/brand-01.png' %}" alt="Brand">
+                        </div>
+                        <div class=" swiper-slide swiper-slide-duplicate swiper-slide-next" role="group"
+                            aria-label="7 / 16" style="width: 132.5px; margin-right: 20px;" data-swiper-slide-index="1">
+                            <img src="{% static 'images/brand/brand-02.png' %}" alt="Brand">
+                        </div>
+                        <div class=" swiper-slide swiper-slide-duplicate" role="group" aria-label="8 / 16"
+                            data-swiper-slide-index="2" style="width: 132.5px; margin-right: 20px;">
+                            <img src="{% static 'images/brand/brand-03.png' %}" alt="Brand">
+                        </div>
+                        <div class=" swiper-slide swiper-slide-duplicate" role="group" aria-label="9 / 16"
+                            data-swiper-slide-index="3" style="width: 132.5px; margin-right: 20px;">
+                            <img src="{% static 'images/brand/brand-04.png' %}" alt="Brand">
+                        </div>
+                    </div>
+                    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                </div>
+            </div>
+            <!-- Brand Logo End -->
+
+        </div>
+
+    </div>
+</div>
+<!-- Team Member's End -->
+
+<!-- How It Work End -->
+<div class="section section-padding pt-2">
+    <div class="container">
+
+        <!-- Section Title Start -->
+        <div class="section-title shape-03 text-center">
+
+            <h2 class="main-title">How It <span> Work?</span></h2>
+        </div>
+        <!-- Section Title End -->
+
+        <!-- How it Work Wrapper Start -->
+        <div class="how-it-work-wrapper">
+
+            <!-- Single Work Start -->
+            <div class="single-work">
+                <img class="shape-1" src="{% static 'images/shape/shape-15.png' %}" alt="Shape">
+
+                <div class="work-icon">
+                    <i class="flaticon-transparency"></i>
+                </div>
+                <div class="work-content">
+                    <h3 class="title">Find Your Course</h3>
+                    <p>It has survived not only centurie also leap into electronic.</p>
+                </div>
+            </div>
+            <!-- Single Work End -->
+
+            <!-- Single Work Start -->
+            <div class="work-arrow">
+                <img class="arrow" src="{% static 'images/shape/shape-17.png' %}" alt="Shape">
+            </div>
+            <!-- Single Work End -->
+
+            <!-- Single Work Start -->
+            <div class="single-work">
+                <img class="shape-2" src="{% static 'images/shape/shape-15.png' %}" alt="Shape">
+
+                <div class="work-icon">
+                    <i class="flaticon-forms"></i>
+                </div>
+                <div class="work-content">
+                    <h3 class="title">Book A Seat</h3>
+                    <p>It has survived not only centurie also leap into electronic.</p>
+                </div>
+            </div>
+            <!-- Single Work End -->
+
+            <!-- Single Work Start -->
+            <div class="work-arrow">
+                <img class="arrow" src="{% static 'images/shape/shape-17.png' %}" alt="Shape">
+            </div>
+            <!-- Single Work End -->
+
+            <!-- Single Work Start -->
+            <div class="single-work">
+                <img class="shape-3" src="{% static 'images/shape/shape-16.png' %}" alt="Shape">
+
+                <div class="work-icon">
+                    <i class="flaticon-badge"></i>
+                </div>
+                <div class="work-content">
+                    <h3 class="title">Get Certificate</h3>
+                    <p>It has survived not only centurie also leap into electronic.</p>
+                </div>
+            </div>
+            <!-- Single Work End -->
+
+        </div>
+
+    </div>
+</div>
+<!-- How It Work End -->
+
+{% endblock %}

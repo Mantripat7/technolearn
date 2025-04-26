@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Chatbot Assistant</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --primary-color: #4fa26f;
+        --primary-light: #e8f5e9;
+        --primary-dark:rgb(57, 145, 62);
+      }
+      
+      body, html {
+        height: 100%;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f5f5f5;
+      }
+      
+      .chat-container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        max-width: 800px;
+        margin: 0 auto;
+        box-shadow: 0 0 20px rgba(61, 61, 61, 0.1);
+        background-color: white;
+      }
+      
+      .card {
+        border: none;
+        border-radius: 0;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+      }
+      
+      .card-header {
+        background-color: var(--primary-color);
+        color: white;
+        font-weight: 600;
+        font-size: 1.2rem;
+        padding: 15px 20px;
+        border-radius: 0 !important;
+        display: flex;
+        align-items: center;
+      }
+      
+      .card-header i {
+        margin-right: 10px;
+        font-size: 1.1rem;
+      }
+      
+      .messages-box {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+      }
+      
+      .messages-list {
+        padding-left: 0;
+      }
+      
+      .message {
+        margin-bottom: 15px;
+        list-style: none;
+        display: flex;
+        animation: fadeIn 0.3s ease-out;
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      .message-text {
+        padding: 12px 15px;
+        border-radius: 18px;
+        max-width: 70%;
+        position: relative;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      }
+      
+      .sent {
+        justify-content: flex-end;
+      }
+      
+      .sent .message-text {
+        background-color: var(--primary-color);
+        color: white;
+        border-bottom-right-radius: 4px;
+      }
+      
+      .received {
+        justify-content: flex-start;
+      }
+      
+      .received .message-text {
+        background-color: white;
+        color: #333;
+        border-bottom-left-radius: 4px;
+      }
+      
+      .message-sender {
+        font-size: 0.8rem;
+        margin-bottom: 5px;
+        font-weight: 600;
+      }
+      
+      .sent .message-sender {
+        color: rgba(255,255,255,0.8);
+      }
+      
+      .received .message-sender {
+        color: var(--primary-dark);
+      }
+      
+      .message-content {
+        word-wrap: break-word;
+      }
+      
+      .message-form {
+        display: flex;
+        padding: 15px;
+        background-color: #f9f9f9;
+       
+      }
+      
+      .input-group {
+        border-radius: 25px;
+        overflow: hidden;
+        box-shadow: 0 0px 9px rgb(137 137 137);
+      }
+      
+      .message-input {
+        flex: 1;
+        border: none;
+        padding: 12px 20px;
+        outline: none;
+        z-index:0;
+      }
+      
+      .btn-send {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 0 20px;
+        transition: all 0.3s;
+        border-radius: 0rem;
+      }
+      
+      .btn-send:hover {
+        background-color: var(--primary-dark);
+      }
+      
+      /* Scrollbar styling */
+      .messages-box::-webkit-scrollbar {
+        width: 6px;
+      }
+      
+      .messages-box::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      
+      .messages-box::-webkit-scrollbar-thumb {
+        background-color: var(--primary-color);
+        border-radius: 6px;
+      }
+      
+      /* Typing indicator */
+      .typing-indicator {
+        display: flex;
+        padding: 10px 15px;
+        background-color: white;
+        border-radius: 18px;
+        margin-bottom: 15px;
+        width: fit-content;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      }
+      
+      .typing-dot {
+        width: 8px;
+        height: 8px;
+        background-color: var(--primary-dark);
+        border-radius: 50%;
+        margin: 0 2px;
+        animation: typingAnimation 1.4s infinite ease-in-out;
+      }
+      
+      .typing-dot:nth-child(1) {
+        animation-delay: 0s;
+      }
+      
+      .typing-dot:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      
+      .typing-dot:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      
+      @keyframes typingAnimation {
+        0%, 60%, 100% {
+          transform: translateY(0);
+        }
+        30% {
+          transform: translateY(-5px);
+        }
+      }
+      
+      /* Timestamp */
+      .message-time {
+        font-size: 0.7rem;
+        margin-top: 5px;
+        opacity: 0.7;
+        text-align: right;
+      }
+    </style>
+  </head>
+    
+  <body>
+    <div style="max-width:none" class="chat-container">
+      <div class="card flex-grow-1">
+        <div class="card-header">
+          <i class="fas fa-robot"></i> AI Chat Assistant
+        </div>
+        
+        <div class="card-body messages-box">
+          <ul class="list-unstyled messages-list">
+            <li class="message received">
+              <div class="message-text">
+                <div class="message-sender">
+                  <b>AI Chatbot</b>
+                </div>
+                <div class="message-content">
+                  Hi {{user.name}}, I am your AI Chatbot, you can ask me anything.
+                </div>
+                <div class="message-time">Just now</div>
+              </div>
+            </li>
+            
+            {% for chat in chats %}
+            {% if chat.user == request.user %}
+            <li class="message sent">
+              <div class="message-text">
+                <div class="message-sender">
+                  <b>You</b>
+                </div>
+                <div class="message-content">
+                  {{chat.message}}
+                </div>
+                <div class="message-time">{{chat.timestamp|time}}</div>
+              </div>
+            </li>
+            
+            <li class="message received">
+              <div class="message-text">
+                <div class="message-sender">
+                  <b>AI Chatbot</b>
+                </div>
+                <div class="message-content">
+                  {{chat.response}}
+                </div>
+                <div class="message-time">{{chat.timestamp|time}}</div>
+              </div>
+            </li>
+            
+            {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      
+      <form class="message-form">
+        {%csrf_token%}
+        <div class="input-group w-full">
+          <input type="text" class="form-control message-input" placeholder="Type your message...">
+          <div class="input-group-append">
+            <button type="submit" class=" btn-send">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      const messagesList = document.querySelector('.messages-list');
+      const messageForm = document.querySelector('.message-form');
+      const messageInput = document.querySelector('.message-input');
+      
+      // Function to add typing indicator
+      function showTypingIndicator() {
+        const typingIndicator = document.createElement('li');
+        typingIndicator.classList.add('typing-indicator');
+        typingIndicator.innerHTML = `
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+        `;
+        messagesList.appendChild(typingIndicator);
+        scrollToBottom();
+        return typingIndicator;
+      }
+      
+      // Function to remove typing indicator
+      function removeTypingIndicator(indicator) {
+        if (indicator && indicator.parentNode) {
+          indicator.parentNode.removeChild(indicator);
+        }
+      }
+      
+      // Function to scroll to bottom of chat
+      function scrollToBottom() {
+        messagesList.scrollTop = messagesList.scrollHeight;
+      }
+      
+      // Function to get current time
+      function getCurrentTime() {
+        const now = new Date();
+        return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      }
+      
+      messageForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        
+        const message = messageInput.value.trim();
+        if (message.length === 0) {
+          return;
+        }
+        
+        // Add user message
+        const messageItem = document.createElement('li');
+        messageItem.classList.add('message', 'sent');
+        messageItem.innerHTML = `
+          <div class="message-text">
+            <div class="message-sender">
+              <b>You</b>
+            </div>
+            <div class="message-content">
+              ${message}
+            </div>
+            <div class="message-time">${getCurrentTime()}</div>
+          </div>`;
+        messagesList.appendChild(messageItem);
+        
+        messageInput.value = '';
+        scrollToBottom();
+        
+        // Show typing indicator
+        const typingIndicator = showTypingIndicator();
+        
+        fetch('', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({
+            'csrfmiddlewaretoken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+            'message': message
+          })
+        })
+          .then(response => response.json())
+          .then(data => {
+            // Remove typing indicator
+            removeTypingIndicator(typingIndicator);
+            
+            // Add bot response
+            const response = data.response;
+            const messageItem = document.createElement('li');
+            messageItem.classList.add('message', 'received');
+            messageItem.innerHTML = `
+            <div class="message-text">
+              <div class="message-sender">
+                <b>AI Chatbot</b>
+              </div>
+              <div class="message-content">
+                ${response}
+              </div>
+              <div class="message-time">${getCurrentTime()}</div>
+            </div>
+            `;
+            messagesList.appendChild(messageItem);
+            scrollToBottom();
+          })
+          .catch(error => {
+            removeTypingIndicator(typingIndicator);
+            console.error('Error:', error);
+          });
+      });
+      
+
+ 
+    </script>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>

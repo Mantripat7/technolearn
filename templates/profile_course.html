@@ -1,0 +1,72 @@
+{% extends 'profile.html' %}
+{% load static %}
+{% block content %}
+
+
+
+
+<!-- Page Content Wrapper Start -->
+<div class="main-content-wrapper">
+    <div class="container-fluid pb-5">
+
+        <div class="container">
+            <!-- Page Banner Start -->
+            <div class="page-banner-content">
+
+                <h2 class="title">My <span>Courses</span></h2>
+            </div>
+            <!-- Page Banner End -->
+        </div>
+
+
+
+        <!-- Engagement Courses End -->
+<div class="engagement-courses table-responsive">
+    <div class="courses-top">
+        <ul>
+            <li>All Courses</li>
+            <li>Total Chapters</li>
+            <li>Completed</li>
+        </ul>
+    </div>
+
+    <div class="courses-list">
+        <ul>
+            {% for item in course_data %}
+            <li>
+                <div class="courses">
+                    <div class="thumb">
+                        <img src="{{ item.course.image.url }}" height="70"  alt="{{ item.course.title }}">
+                    </div>
+                    <div class="content">
+                        <h4 class="title"><a href="#">{{ item.course.title }}</a></h4>
+                    </div>
+                </div>
+                <div class="taught">
+                    <span>{{ item.total_modules }}</span>
+                </div>
+                {% if item.user_certified %}
+                <div class="student">
+                    <span>completed</span>
+                </div>
+                {% else %}
+                <div class="student">
+                    <span>not completed</span>
+                </div>
+                {% endif %} 
+                <div class="button">
+                    <a class="btn" href="{% url 'course_detail' item.course.id %}">Start Course</a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+        <!-- Engagement Courses End -->
+    </div>
+</div>
+<!-- Page Content Wrapper End -->
+
+
+{% endblock %}

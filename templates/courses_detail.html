@@ -1,0 +1,349 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Page Banner Start -->
+<div class="section page-banner">
+
+    <img class="shape-1 animation-round" src="{% static 'images/shape/shape-8.png' %}" alt="Shape">
+    <img class="shape-2" src="{% static 'images/shape/shape-23.png' %}" alt="Shape">
+
+    <div class="container">
+        <!-- Page Banner Start -->
+        <div class="page-banner-content">
+            <ul class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li class="active">Courses Details</li>
+            </ul>
+            <h2 class="title">Courses <span> Details</span></h2>
+        </div>
+        <!-- Page Banner End -->
+    </div>
+
+    <!-- Shape Icon Box Start -->
+    <div class="shape-icon-box">
+        <img class="icon-shape-1 animation-left" src="{% static 'images/shape/shape-5.png' %}" alt="Shape">
+        <div class="box-content">
+            <div class="box-wrapper">
+                <i class="flaticon-badge"></i>
+            </div>
+        </div>
+
+        <img class="icon-shape-2" src="{% static 'images/shape/shape-6.png' %}" alt="Shape">
+
+    </div>
+    <!-- Shape Icon Box End -->
+
+    <img class="shape-3" src="{% static 'images/shape/shape-24.png' %}" alt="Shape">
+    <img class="shape-author" src="{% static 'images/author/author-11.jpg' %}" alt="Shape">
+
+</div>
+<!-- Page Banner End -->
+
+<!-- Courses Start -->
+<div class="section section-padding mt-n10">
+    <div class="container">
+        <div class="row gx-10">
+            <div class="col-lg-7">
+
+                <!-- Courses Details Start -->
+                <div class="courses-details">
+
+                   <img src="{{ course.image.url }}" width="800" height ="425" class="rounded-2" alt="Courses Details">
+                           <h2 class="title mt-3">{{course.title}}
+                    </h2> 
+
+            
+                    <div class="courses-details-admin">
+                        <div class="admin-author">
+
+                            <div class="author-content">
+                                <a class="name" href="#">{{ course.instructor}}</a>
+                                <span class="Enroll">286 Enrolled Students</span>
+                            </div>
+                        </div>
+                        <div class="admin-rating">
+                            <span class="rating-count">4.9</span>
+                            <span class="rating-star">
+                                <span class="rating-bar" style="width: 80%;"></span>
+                            </span>
+                            <span class="rating-text">(5,764 Rating)</span>
+                        </div>
+                    </div>
+
+                    <!-- Courses Details Tab Start -->
+                    <div class="courses-details-tab">
+
+                        <!-- Details Tab Menu Start -->
+                        <div class="details-tab-menu">
+                            <ul class="nav justify-content-center">
+                                <li><button class="active" data-bs-toggle="tab"
+                                        data-bs-target="#description">Description</button></li>
+                                <li><button data-bs-toggle="tab" data-bs-target="#instructors">Pre Requisites</button>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <!-- Details Tab Menu End -->
+
+                        <!-- Details Tab Content Start -->
+                        <div class="details-tab-content">
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="description">
+                                    <!-- Tab Description Start -->
+                                    <div class="tab-description">
+                                        <div class="description-wrapper">
+                                            <h3 class="tab-title">Description:</h3>
+                                            <p>{{course.description}}</p>
+                                        </div>
+
+                                       
+                                    </div>
+                                    <!-- Tab Description End -->
+
+                                </div>
+                                <div class="tab-pane fade" id="instructors">
+                                    <div class="tab-instructors">
+                                        <div class="tab-description">
+                                            <div class="description-wrapper">
+                                                <h3 class="tab-title">Pre Requisites:</h3>
+                                                <div style="white-space: pre-wrap;">{{course.prerequisites}}</div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!-- Tab Instructors End -->
+
+                                </div>
+                                <div class="tab-pane fade" id="reviews">
+
+                                    <!-- Tab Reviews Start -->
+                                    <div class="tab-reviews">
+                                        <h3 class="tab-title">Student Reviews:</h3>
+
+                                        <div class="reviews-wrapper reviews-active">
+                                            <div class="swiper-container">
+                                                <div class="swiper-wrapper">
+
+                                                    <!-- Single Reviews Start -->
+                                                    <div class="single-review swiper-slide">
+                                                        <div class="review-author">
+
+                                                            <div class="author-content">
+                                                                <h4 class="name">Sara Alexander</h4>
+                                                                <span class="designation">Product Designer, USA</span>
+                                                                <span class="rating-star">
+                                                                    <span class="rating-bar"
+                                                                        style="width: 100%;"></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <p>Lorem Ipsum has been the industry's standard dummy text since
+                                                            the 1500 when unknown printer took a galley of type and
+                                                            scrambled to make type specimen book has survived not five
+                                                            centuries but also the leap into electronic type and book.
+                                                        </p>
+                                                    </div>
+                                                    <!-- Single Reviews End -->
+
+                                                    <!-- Single Reviews Start -->
+                                                    <div class="single-review swiper-slide">
+                                                        <div class="review-author">
+
+                                                            <div class="author-content">
+                                                                <h4 class="name">Karol Bachman</h4>
+                                                                <span class="designation">Product Designer, USA</span>
+                                                                <span class="rating-star">
+                                                                    <span class="rating-bar"
+                                                                        style="width: 100%;"></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <p>Lorem Ipsum has been the industry's standard dummy text since
+                                                            the 1500 when unknown printer took a galley of type and
+                                                            scrambled to make type specimen book has survived not five
+                                                            centuries but also the leap into electronic type and book.
+                                                        </p>
+                                                    </div>
+                                                    <!-- Single Reviews End -->
+
+                                                    <!-- Single Reviews Start -->
+                                                    <div class="single-review swiper-slide">
+                                                        <div class="review-author">
+
+                                                            <div class="author-content">
+                                                                <h4 class="name">Gertude Culbertson</h4>
+                                                                <span class="designation">Product Designer, USA</span>
+                                                                <span class="rating-star">
+                                                                    <span class="rating-bar"
+                                                                        style="width: 100%;"></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <p>Lorem Ipsum has been the industry's standard dummy text since
+                                                            the 1500 when unknown printer took a galley of type and
+                                                            scrambled to make type specimen book has survived not five
+                                                            centuries but also the leap into electronic type and book.
+                                                        </p>
+                                                    </div>
+                                                    <!-- Single Reviews End -->
+
+                                                </div>
+                                                <!-- Add Pagination -->
+                                                <div class="swiper-pagination"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="reviews-btn">
+                                            <button type="button" class="btn btn-primary btn-hover-dark"
+                                                data-bs-toggle="modal" data-bs-target="#reviewsModal">Write A
+                                                Review</button>
+                                        </div>
+
+
+
+                                    </div>
+                                    <!-- Tab Reviews End -->
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Details Tab Content End -->
+
+                    </div>
+                    <!-- Courses Details Tab End -->
+
+                </div>
+                <!-- Courses Details End -->
+
+            </div>
+            <div class="col-lg-5">
+                <!-- Courses Details Sidebar Start -->
+                <div class="sidebar">
+
+                    <!-- Sidebar Widget Information Start -->
+                    <div class="sidebar-widget widget-information">
+                        <div class="info-price">
+                            <span class="price">₹{{course.price}}</span>
+                        </div>
+                        <div class="info-list">
+                            <ul>
+                                <li><i class="icofont-man-in-glasses"></i> <strong>Instructor</strong>
+                                    <span>{{course.instructor}}</span>
+                                </li>
+                                <li><i class="icofont-clock-time"></i> <strong>Created On</strong>
+                                    <span>{{ course.created_at|date:"F j, Y" }}</span>
+                                </li>
+
+                                <li><i class="icofont-bars"></i> <strong>Level</strong> <span>Secondary</span></li>
+                                <li><i class="icofont-book-alt"></i> <strong>Language</strong> <span>English</span></li>
+                                <li><i class="icofont-certificate-alt-1"></i> <strong>Certificate</strong>
+                                    <span>Yes</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="info-btn">
+                            <form action="{% url 'create_checkout_session' course.id %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-primary btn-hover-dark">Enroll Now</button>
+                            </form>
+
+                        </div>
+                    </div>
+                    <!-- Sidebar Widget Information End -->
+
+                    <!-- Sidebar Widget Share Start -->
+                    <div class="sidebar-widget">
+                        <h4 class="widget-title">Share Course:</h4>
+
+                        <ul class="social">
+                            <li><a href="#"><i class="flaticon-facebook"></i></a></li>
+                            <li><a href="#"><i class="flaticon-linkedin"></i></a></li>
+                            <li><a href="#"><i class="flaticon-twitter"></i></a></li>
+                            <li><a href="#"><i class="flaticon-skype"></i></a></li>
+                            <li><a href="#"><i class="flaticon-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                    <!-- Sidebar Widget Share End -->
+
+                </div>
+                <!-- Courses Details Sidebar End -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Courses End -->
+<!-- How It Work End -->
+<div class="section  mt-n1">
+    <div class="container">
+
+        <!-- Section Title Start -->
+        <div class="section-title shape-03 text-center">
+            <h5 class="sub-title">Over 1,235+ Course</h5>
+            <h2 class="main-title">How It <span> Work?</span></h2>
+        </div>
+        <!-- Section Title End -->
+
+        <!-- How it Work Wrapper Start -->
+        <div class="how-it-work-wrapper">
+
+            <!-- Single Work Start -->
+            <div class="single-work">
+                <img class="shape-1" src="{% static 'images/shape/shape-15.png' %}" alt="Shape">
+
+                <div class="work-icon">
+                    <i class="flaticon-transparency"></i>
+                </div>
+                <div class="work-content">
+                    <h3 class="title">Find Your Course</h3>
+                    <p>It has survived not only centurie also leap into electronic.</p>
+                </div>
+            </div>
+            <!-- Single Work End -->
+
+            <!-- Single Work Start -->
+            <div class="work-arrow">
+                <img class="arrow" src="{% static 'images/shape/shape-17.png' %}" alt="Shape">
+            </div>
+            <!-- Single Work End -->
+
+            <!-- Single Work Start -->
+            <div class="single-work">
+                <img class="shape-2" src="{% static 'images/shape/shape-15.png' %}" alt="Shape">
+
+                <div class="work-icon">
+                    <i class="flaticon-forms"></i>
+                </div>
+                <div class="work-content">
+                    <h3 class="title">Book A Seat</h3>
+                    <p>It has survived not only centurie also leap into electronic.</p>
+                </div>
+            </div>
+            <!-- Single Work End -->
+
+            <!-- Single Work Start -->
+            <div class="work-arrow">
+                <img class="arrow" src="{% static 'images/shape/shape-17.png' %}" alt="Shape">
+            </div>
+            <!-- Single Work End -->
+
+            <!-- Single Work Start -->
+            <div class="single-work">
+                <img class="shape-3" src="{% static 'images/shape/shape-16.png' %}" alt="Shape">
+
+                <div class="work-icon">
+                    <i class="flaticon-badge"></i>
+                </div>
+                <div class="work-content">
+                    <h3 class="title">Get Certificate</h3>
+                    <p>It has survived not only centurie also leap into electronic.</p>
+                </div>
+            </div>
+            <!-- Single Work End -->
+
+        </div>
+
+    </div>
+</div>
+<!-- How It Work End -->
+
+{% endblock %}

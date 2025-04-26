@@ -1,0 +1,207 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .alert {
+        position: relative;
+        padding: 15px 40px 15px 20px;
+        background-color: #d4edda;
+        color: #155724;
+        border-left: 5px solid #309255;
+        border-radius: 5px;
+        margin-top: 20px;
+        font-family: sans-serif;
+    }
+
+    .alert .close-btn {
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        font-size: 20px;
+        font-weight: bold;
+        color: #155724;
+        cursor: pointer;
+    }
+  
+</style>
+
+<!-- Page Banner Start -->
+<div class="section page-banner">
+    <img class="shape-1 animation-round" src="{% static 'images/shape/shape-8.png' %}" alt="Shape">
+    <img class="shape-2" src="{% static 'images/shape/shape-23.png' %}" alt="Shape">
+    <div class="container">
+        <!-- Page Banner Start -->
+        <div class="page-banner-content">
+            <ul class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li class="active">Contact Us</li>
+            </ul>
+            <h2 class="title">Contact <span>Us</span></h2>
+        </div>
+        <!-- Page Banner End -->
+    </div>
+
+    <!-- Shape Icon Box Start -->
+    <div class="shape-icon-box">
+
+        <img class="icon-shape-1 animation-left" src="{% static 'images/shape/shape-5.png' %}" alt="Shape">
+
+        <div class="box-content">
+            <div class="box-wrapper">
+                <i class="flaticon-badge"></i>
+            </div>
+        </div>
+
+        <img class="icon-shape-2" src="{% static 'images/shape/shape-6.png' %}" alt="Shape">
+
+    </div>
+    <!-- Shape Icon Box End -->
+
+    <img class="shape-3" src="{% static 'images/shape/shape-24.png' %}" alt="Shape">
+
+    <img class="shape-author" src="{% static 'images/author/author-11.jpg' %}" alt="Shape">
+
+</div>
+<!-- Page Banner End -->
+
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success dismissible">
+            <span>{{ message }}</span>
+            <button type="button" class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+<!-- Contact Map Start -->
+<div class="section section-padding-02">
+    <div class="container">
+
+        <!-- Contact Map Wrapper Start -->
+        <div class="contact-map-wrapper">
+            <iframe id="gmap_canvas"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3396.9601139950014!2d74.82558107470157!3d31.63494244147423!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39196527e76e3995%3A0xf5779932d3dab5d0!2sGuru%20Nanak%20Dev%20University!5e0!3m2!1sen!2sin!4v1745584731557!5m2!1sen!2sin"></iframe>
+
+        </div>
+        <!-- Contact Map Wrapper End -->
+
+    </div>
+</div>
+<!-- Contact Map End -->
+
+<!-- Contact Start -->
+<div class="section section-padding">
+    <div class="container">
+
+        <!-- Contact Wrapper Start -->
+        <div class="contact-wrapper">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+
+                    <!-- Contact Info Start -->
+                    <div class="contact-info">
+
+                        <img class="shape animation-round" src="{% static 'images/shape/shape-12.png' %}" alt="Shape">
+
+                        <!-- Single Contact Info Start -->
+                        <div class="single-contact-info">
+                            <div class="info-icon">
+                                <i class="flaticon-phone-call"></i>
+                            </div>
+                            <div class="info-content">
+                                <h6 class="title">Phone No.</h6>
+                                <p><a href="tel:88193326867">(+91) 987654321</a></p>
+                            </div>
+                        </div>
+                        <!-- Single Contact Info End -->
+                        <!-- Single Contact Info Start -->
+                        <div class="single-contact-info">
+                            <div class="info-icon">
+                                <i class="flaticon-email"></i>
+                            </div>
+                            <div class="info-content">
+                                <h6 class="title">Email Address.</h6>
+                                <p><a href="mailto:edule100@gmail.com">techlearn7@gmail.com</a></p>
+                            </div>
+                        </div>
+                        <!-- Single Contact Info End -->
+                        <!-- Single Contact Info Start -->
+                        <div class="single-contact-info">
+                            <div class="info-icon">
+                                <i class="flaticon-pin"></i>
+                            </div>
+                            <div class="info-content">
+                                <h6 class="title">Office Address.</h6>
+                                <p>Punjab, India</p>
+                            </div>
+                        </div>
+                        <!-- Single Contact Info End -->
+                    </div>
+                    <!-- Contact Info End -->
+
+                </div>
+                <div class="col-lg-6">
+
+                    <!-- Contact Form Start -->
+                    <div class="contact-form">
+                        <h3 class="title">Get in Touch <span>With Us</span></h3>
+
+                        <div class="form-wrapper">
+                            <form id="contact-form" method="POST">
+                                {% csrf_token %}
+
+                                <!-- Name Field -->
+                                <div class="single-form">
+                                    <input type="text" name="name" placeholder="Name" required>
+                                </div>
+
+                                <!-- Email Field -->
+                                <div class="single-form">
+                                    <input type="email" name="email" placeholder="Email" required>
+                                </div>
+
+                                <!-- Subject Field -->
+                                <div class="single-form">
+                                    <input type="text" name="subject" placeholder="Subject" required>
+                                </div>
+
+                                <!-- Message Field -->
+                                <div class="single-form">
+                                    <textarea name="message" placeholder="Message" rows="4" required></textarea>
+                                </div>
+
+                                <!-- Feedback Messages -->
+                                <!-- {% if messages %}
+                                <div class="single-form">
+                                    {% for message in messages %}
+                                    <p class="form-message">{{ message }}</p>
+                                    {% endfor %}
+                                </div>
+                                {% endif %} -->
+
+                                <!-- Submit Button -->
+
+                                <div class="single-form">
+                                    <button class="btn btn-primary btn-hover-dark w-100" type="submit">
+                                        Send Message <i class="flaticon-right"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                    <!-- Contact Form End -->
+
+                </div>
+            </div>
+        </div>
+        <!-- Contact Wrapper End -->
+
+    </div>
+</div>
+<!-- Contact End -->
+{% endblock %}

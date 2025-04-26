@@ -1,0 +1,1018 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+     <title>TechnoLearn - eLearning Website</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+
+    <!-- Google Fonts CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font CSS -->
+    <link rel="stylesheet" href="{% static 'css/plugins/icofont.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/plugins/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/plugins/font-awesome.min.css' %}">
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="{% static 'css/plugins/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/plugins/swiper-bundle.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/plugins/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/plugins/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'css/plugins/apexcharts.css' %}">
+    <link rel="stylesheet" href="{% static 'css/plugins/jqvmap.min.css' %}">
+
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
+    <link rel="stylesheet" href="{% static 'css/vendor/plugins.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+
+</head>
+<style>
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        /* 16:9 aspect ratio */
+        height: 0;
+        overflow: hidden;
+    }
+
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
+<style>
+
+    .alert {
+        position: relative;
+        padding: 15px 40px 15px 20px;
+        background-color: #d4edda;
+        color: #155724;
+        border-left: 5px solid #309255;
+        border-radius: 5px;
+        margin-top: 20px;
+        font-family: sans-serif;
+    }
+
+    .alert .close-btn {
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        font-size: 20px;
+        font-weight: bold;
+        color: #155724;
+        cursor: pointer;
+    }
+    .question-header {
+        background: #f7f7f9;
+        padding: 10px 15px;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .options {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .options li {
+        display: flex;
+        align-items: center;
+        padding: 12px 15px;
+        border-top: 1px solid #eee;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+
+    .options li:first-child {
+        border-top: none;
+    }
+
+    .options li.disabled {
+        pointer-events: none;
+        opacity: 0.7;
+        cursor: default;
+    }
+
+    .options li .label-circle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        margin-right: 12px;
+        font-weight: bold;
+    }
+
+    .options li.correct {
+        background: #d4edda;
+        border-color: #c3e6cb;
+    }
+
+    .options li.correct .label-circle {
+        border-color: #28a745;
+        color: #28a745;
+    }
+
+    .options li.incorrect {
+        background: #f8d7da;
+        border-color: #f5c6cb;
+    }
+
+    .options li.incorrect .label-circle {
+        border-color: #dc3545;
+        color: #dc3545;
+    }
+
+    .explanation-card {
+        background: #f1f1f1;
+        border-radius: 4px;
+        padding: 12px 15px;
+        margin-top: 15px;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+</style>
+
+<body>
+    <div class="main-wrapper">
+        <!-- Login Header Start -->
+        <div class="section login-header">
+            <!-- Login Header Wrapper Start -->
+            <div class="login-header-wrapper navbar navbar-expand">
+
+                <!-- Header Logo Start -->
+                <div class="login-header-logo logo-2">
+                    <a href="/"><img src="{% static 'images/techno.png' %}" width="250" alt="Logo"></a></li>
+                </div>
+                <!-- Header Logo End -->
+
+                <!-- Header Search Start -->
+                <div class="login-header-search search-2 dropdown">
+
+
+                    <h4 class="text-white"> {{course.title}}</h4>
+
+                </div>
+                <!-- Header Search End -->
+
+                <!-- Header Action Start -->
+                <div class="login-header-action action-2 ml-auto">
+
+                    <a class="action author" href="/profile_section">
+                        <img src="{% static 'images/author/avatar.jpg' %}" alt="Author">
+                    </a>
+
+                    <div class="dropdown">
+                        <button class="action more" data-bs-toggle="dropdown">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="" href="/profile_section"><i class="icofont-user"></i> Profile</a></li>
+
+                            <li><a class="" href="/logout"><i class="icofont-logout"></i> Sign Out</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Header Action End -->
+
+            </div>
+            <!-- Login Header Wrapper End -->
+        </div>
+        <!-- Login Header End -->
+
+        <div class="section section-padding mt-n10">
+            <div class="container">
+                <div class="row gx-10">
+                        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success dismissible">
+            <span>{{ message }}</span>
+            <button type="button" class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+        </div>
+        {% endfor %}
+        {% endif %}
+                    <div class="col-lg-7">
+                        <!-- Courses Details Start -->
+                        <h2 class="title mt-0 mb-0">{{module.title}}
+                        </h2>
+                        <div style=" margin-top: 22px;" class="courses-details ">
+                            <div class="courses-details-images">
+                                {% if lesson.video_url %}
+                                <div class="video-container">
+                                    <iframe src="{{ lesson.video_url }}" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                                {% else %}
+                                <img src="{% static 'images/courses/courses-details.jpg' %}" alt="Courses Details">
+                                <div class="courses-play">
+                                    <img src="{% static 'images/courses/circle-shape.png' %}" alt="Play">
+                                    <a class="play video-popup" href="#"><i class="flaticon-play"></i></a>
+                                </div>
+                                {% endif %}
+                            </div>
+
+
+
+
+                            <!-- Courses Details Tab Start -->
+                            <div class="courses-details-tab">
+
+                                <!-- Details Tab Menu Start -->
+                                <div class="details-tab-menu">
+                                    <ul class="nav justify-content-center">
+                                        <li><button class="active" data-bs-toggle="tab"
+                                                data-bs-target="#description">Description</button></li>
+                                        <li><button data-bs-toggle="tab" data-bs-target="#instructors"
+                                                class="">Resources</button></li>
+                                        <li><button data-bs-toggle="tab" data-bs-target="#reviews" class="">Take
+                                                Test</button></li>
+                                    </ul>
+                                </div>
+                                <!-- Details Tab Menu End -->
+
+                                <!-- Details Tab Content Start -->
+                                <div class="details-tab-content">
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade active show" id="description">
+
+                                            <!-- Tab Description Start -->
+                                            <div class="tab-description">
+                                                <div class="description-wrapper">
+                                                    <h3 class="tab-title">{{ lesson.title }} ? </h3>
+                                                    {% if lesson.pdf_material %}
+                                                    <div style="white-space: pre-wrap;">
+                                                        {{ lesson.pdf_material|safe}}
+                                                    </div>
+                                                    {% else %}
+                                                    <p>
+                                                        Sorry, for the inconvinence we will upload the content soon.
+                                                    </p>
+                                                    {% endif %}
+                                                </div>
+
+
+                                            </div>
+                                            <!-- Tab Description End -->
+
+                                        </div>
+
+                                        <div class="tab-pane fade" id="instructors">
+                                            <div class="tab-instructors">
+                                                <h4 style="font-size: 20px; font-weight: bold; margin-bottom: 10px;">
+                                                    Download Material :</h4>
+                                                <a href="{% url 'download_notes' lesson.id %}">Click here to download
+                                                </a>
+                                                <div class="row" style="margin-top: 40px;">
+                                                    <h4
+                                                        style="font-size: 20px; font-weight: bold; margin-bottom: 10px;">
+                                                        Download Audio :</h4>
+                                                    <a href="{% url 'download_audio' lesson.id %}">Click here to
+                                                        download </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {% comment %} <div class="tab-pane fade" id="instructors">
+                                            <!-- Tab Material Start -->
+                                            <div class="tab-instructors">
+                                                <h4 style="font-size: 20px; font-weight: bold; margin-bottom: 10px;">
+                                                    Download Material :</h4>
+                                                <div class="row px-2">
+                                                    <form method="post" action="/pdftext">
+                                                        {% csrf_token %}
+                                                        <div style="margin-bottom: 24px;">
+                                                            <textarea id="text" name="text"
+                                                                style="width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; outline: none;"
+                                                                placeholder="Enter text here"
+                                                                hidden>{{ lesson.pdf_material|default_if_none:"" }}</textarea>
+                                                        </div>
+                                                        <div
+                                                            style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px;">
+                                                            <div>
+                                                                <label for="page_size"
+                                                                    style="display: block; font-size: 14px; font-weight: 500; color: #374151; margin-bottom: 4px;">Page
+                                                                    Size</label>
+                                                                <select id="page_size" name="page_size"
+                                                                    style="width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; outline: none;">
+                                                                    <option value="a4">A4</option>
+                                                                    <option value="letter">Letter</option>
+                                                                    <option value="legal">Legal</option>
+                                                                </select>
+                                                            </div>
+                                                            <div>
+                                                                <label for="orientation"
+                                                                    style="display: block; font-size: 14px; font-weight: 500; color: #374151; margin-bottom: 4px;">Orientation</label>
+                                                                <select id="orientation" name="orientation"
+                                                                    style="width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; outline: none;">
+                                                                    <option value="portrait">Portrait</option>
+                                                                    <option value="landscape">Landscape</option>
+                                                                </select>
+                                                            </div>
+                                                            <div>
+                                                                <label for="font_size"
+                                                                    style="display: block; font-size: 14px; font-weight: 500; color: #374151; margin-bottom: 4px;">Font
+                                                                    Size</label>
+                                                                <select id="font_size" name="font_size"
+                                                                    style="width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; outline: none;">
+                                                                    <option value="12">12px</option>
+                                                                    <option value="14">14px</option>
+                                                                    <option value="16" selected>16px</option>
+                                                                    <option value="18">18px</option>
+                                                                    <option value="20">20px</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <button type="submit"
+                                                            style=" padding: 12px 24px; background-color: #309255; color: white; font-weight: 500; border-radius: 8px; cursor: pointer; transition: background-color 0.3s;"
+                                                            onmouseover="this.style.backgroundColor='#1d4ed8'"
+                                                            onmouseout="this.style.backgroundColor='#2563eb'">
+                                                            Download PDF
+                                                        </button>
+                                                    </form>
+                                                </div>
+
+                                                <div class="row" style="margin-top: 40px;">
+                                                    <div class="col-lg-12">
+                                                        <h4
+                                                            style="font-size: 20px; font-weight: bold; margin-bottom: 10px;">
+                                                            Download Audio :</h4>
+                                                        <div style="margin-top:35px" class="tab-rating-content">
+                                                            <div
+                                                                style="background-color: white; border-radius: 16px; overflow: hidden; transition: all 0.3s;">
+                                                                <div class="px-4">
+                                                                    <textarea id="text-input"
+                                                                        hidden>{{ lesson.pdf_material }}</textarea>
+                                                                    <div
+                                                                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-bottom: 24px;">
+                                                                        <div>
+                                                                            <label for="voice-select"
+                                                                                style="display: block; font-size: 14px; font-weight: 500; color: #374151; margin-bottom: 8px;">Select
+                                                                                Voice</label>
+                                                                            <select id="voice-select"
+                                                                                style="width: 100%; padding: 8px; border-radius: 8px; border: 1px solid #d1d5db; transition: all 0.3s;">
+                                                                                <option value="en">English</option>
+                                                                                <option value="es">Spanish</option>
+                                                                                <option value="fr">French</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div>
+                                                                            <label for="rate-select"
+                                                                                style="display: block; font-size: 14px; font-weight: 500; color: #374151; margin-bottom: 8px;">Speech
+                                                                                Rate</label>
+                                                                            <select id="rate-select"
+                                                                                style="width: 100%; padding: 8px; border-radius: 8px; border: 1px solid #d1d5db; transition: all 0.3s;">
+                                                                                <option value="0.5">0.5x - Slow</option>
+                                                                                <option value="0.8">0.8x - Moderately
+                                                                                    Slow</option>
+                                                                                <option value="1" selected>1x - Normal
+                                                                                </option>
+                                                                                <option value="1.2">1.2x - Moderately
+                                                                                    Fast</option>
+                                                                                <option value="1.5">1.5x - Fast</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div
+                                                                        style="display: flex; flex-wrap: wrap; gap: 12px;">
+                                                                        <button id="download-btn"
+                                                                            style="padding: 12px 24px; background-color: #309255; color: white; border-radius: 8px; font-weight: 500; display: flex; align-items: center; gap: 8px; cursor: pointer; transition: background-color 0.3s;"
+                                                                            onmouseover="this.style.backgroundColor='#15803d'"
+                                                                            onmouseout="this.style.backgroundColor='#16a34a'">
+                                                                            <i class="fas fa-download"></i> Download MP3
+                                                                        </button>
+                                                                    </div>
+                                                                    <div id="status"
+                                                                        style="margin-top: 24px; text-align: center; font-size: 14px; color: #6b7280; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                                                                        <i class="fas fa-info-circle"></i> Enter text
+                                                                        and select a voice to generate audio
+                                                                    </div>
+                                                                    <audio id="audio-player" class="hidden"></audio>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <!-- Tab Material End -->
+                                        </div> {% endcomment %}
+
+
+                                        <!-- Tab MCQ Start -->
+                                        <div class="tab-pane fade" id="reviews">
+                                            <div class="tab-reviews">
+                                                <div class="reviews-wrapper" style="max-width: 600px; margin: auto;">
+                                                    {% if mcqs %}
+                                                    <form id="quizForm" method="post">
+                                                        {% csrf_token %}
+                                                        <input type="hidden" name="lesson_id" value="{{ lesson.id }}">
+                                                        {% for mcq in mcqs %}
+                                                        <div class="single-review" style="padding:0px ;display: none;"
+                                                            data-correct="{{ mcq.correct_option }}"
+                                                            data-explanation="{{ mcq.explanation|escapejs }}">
+                                                          
+                                                                <div class="question-header">
+                                                                    Question {{ forloop.counter }} of {{ mcqs|length }}
+                                                                </div>
+                                                                <div style="padding: 15px;">
+                                                                    <p style="margin-bottom: 20px;">{{ mcq.question_text}}</p>
+                                                                    <ul class="options">
+                                                                        <li data-value="a">
+                                                                            <span class="label-circle">A</span>{{mcq.option_a }}
+                                                                            <input type="radio"
+                                                                                name="question_{{ mcq.id }}" value="a"
+                                                                                hidden>
+                                                                        </li>
+                                                                        <li data-value="b">
+                                                                            <span class="label-circle">B</span>{{ mcq.option_b }}
+                                                                            <input type="radio"
+                                                                                name="question_{{ mcq.id }}" value="b"
+                                                                                hidden>
+                                                                        </li>
+                                                                        <li data-value="c">
+                                                                            <span class="label-circle">C</span>{{ mcq.option_c }}
+                                                                            <input type="radio"
+                                                                                name="question_{{ mcq.id }}" value="c"
+                                                                                hidden>
+                                                                        </li>
+                                                                        <li data-value="d">
+                                                                            <span class="label-circle">D</span>{{ mcq.option_d }}
+                                                                            <input type="radio"
+                                                                                name="question_{{ mcq.id }}" value="d"
+                                                                                hidden>
+                                                                        </li>
+                                                                    </ul>
+                                                                    <div class="explanation-card"
+                                                                        style="display: none;"></div>
+                                                                </div>
+                                                         
+                                                        </div>
+                                                        {% empty %}
+                                                        <p>No Question Found</p>
+                                                        {% endfor %}
+
+                                                        <div style="text-align: right; margin-top: 10px;">
+                                                            <button type="button" id="nextQuestion" disabled
+                                                                style="font-size:14px; background:#4fa26f; border:none; color:#fff; padding:8px 16px; border-radius:5px; cursor:not-allowed;">
+                                                                Next
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                    {% endif %}
+                                                </div>
+
+                                                <script>
+                                                    const slides = document.querySelectorAll('.single-review');
+                                                    const nextButton = document.getElementById('nextQuestion');
+                                                    let current = 0;
+
+                                                    function showSlide(i) {
+                                                        slides.forEach((s, idx) => s.style.display = idx === i ? 'block' : 'none');
+                                                        resetSlide(slides[i]);
+                                                        nextButton.disabled = true;
+                                                        nextButton.style.cursor = 'not-allowed';
+                                                        nextButton.textContent = i === slides.length - 1 ? 'Submit' : 'Next';
+                                                        handleOptions(slides[i]);
+                                                    }
+
+                                                    function resetSlide(slide) {
+                                                        slide.querySelectorAll('li').forEach(li => {
+                                                            li.classList.remove('correct', 'incorrect', 'disabled');
+                                                            li.querySelector('input').checked = false;
+                                                        });
+                                                        slide.querySelector('.explanation-card').style.display = 'none';
+                                                    }
+
+                                                    function handleOptions(slide) {
+                                                        const correct = slide.dataset.correct;
+                                                        const explanation = slide.dataset.explanation;
+                                                        const feedbackEl = slide.querySelector('.explanation-card');
+
+                                                        slide.querySelectorAll('li').forEach(li => {
+                                                            li.addEventListener('click', () => {
+                                                                // *** Ensure the radio input actually gets checked ***
+                                                                const radio = li.querySelector('input[type="radio"]');
+                                                                radio.checked = true;
+
+                                                                // Disable all answers
+                                                                slide.querySelectorAll('li').forEach(l => l.classList.add('disabled'));
+
+                                                                // Mark correct/incorrect
+                                                                const val = li.dataset.value;
+                                                                if (val === correct) {
+                                                                    li.classList.add('correct');
+                                                                } else {
+                                                                    li.classList.add('incorrect');
+                                                                    // also highlight the real correct one
+                                                                    slide.querySelector(`li[data-value="${correct}"]`)
+                                                                        .classList.add('correct');
+                                                                }
+
+                                                                // Show explanation
+                                                                feedbackEl.innerText = explanation;
+                                                                feedbackEl.style.display = 'block';
+
+                                                                // Enable Next button
+                                                                nextButton.disabled = false;
+                                                                nextButton.style.cursor = 'pointer';
+                                                            }, { once: true });
+                                                        });
+                                                    }
+
+                                                    nextButton.addEventListener('click', () => {
+                                                        if (current < slides.length - 1) {
+                                                            current++;
+                                                            showSlide(current);
+                                                        } else {
+                                                            document.getElementById('quizForm').submit();
+                                                        }
+                                                    });
+
+                                                    // Initialize
+                                                    showSlide(0);
+                                                </script>
+
+
+                                                <!-- Reviews Form Modal Start -->
+                                                <div class="modal fade" id="reviewsModal">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Add a Review</h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+
+                                                            <!-- Reviews Form Start -->
+                                                            <div class="modal-body reviews-form">
+                                                                <form action="#">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <!-- Single Form Start -->
+                                                                            <div class="single-form">
+                                                                                <input type="text"
+                                                                                    placeholder="Enter your name">
+                                                                            </div>
+                                                                            <!-- Single Form End -->
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <!-- Single Form Start -->
+                                                                            <div class="single-form">
+                                                                                <input type="text"
+                                                                                    placeholder="Enter your Email">
+                                                                            </div>
+                                                                            <!-- Single Form End -->
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                            <!-- Single Form Start -->
+                                                                            <div class="reviews-rating">
+                                                                                <label>Rating</label>
+                                                                                <ul id="rating" class="rating">
+                                                                                    <li class="star" title="Poor"
+                                                                                        data-value="1"><i
+                                                                                            class="icofont-star"></i>
+                                                                                    </li>
+                                                                                    <li class="star" title="Poor"
+                                                                                        data-value="2"><i
+                                                                                            class="icofont-star"></i>
+                                                                                    </li>
+                                                                                    <li class="star" title="Poor"
+                                                                                        data-value="3"><i
+                                                                                            class="icofont-star"></i>
+                                                                                    </li>
+                                                                                    <li class="star" title="Poor"
+                                                                                        data-value="4"><i
+                                                                                            class="icofont-star"></i>
+                                                                                    </li>
+                                                                                    <li class="star" title="Poor"
+                                                                                        data-value="5"><i
+                                                                                            class="icofont-star"></i>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                            <!-- Single Form End -->
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                            <!-- Single Form Start -->
+                                                                            <div class="single-form">
+                                                                                <textarea
+                                                                                    placeholder="Write your comments here"></textarea>
+                                                                            </div>
+                                                                            <!-- Single Form End -->
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                            <!-- Single Form Start -->
+                                                                            <div class="single-form">
+                                                                                <button
+                                                                                    class="btn btn-primary btn-hover-dark">Submit
+                                                                                    Review</button>
+                                                                            </div>
+                                                                            <!-- Single Form End -->
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <!-- Reviews Form End -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Reviews Form Modal End -->
+
+                                            </div>
+
+                                        </div>
+                                        <!-- Tab MCQ End -->
+                                    </div>
+                                </div>
+                                <!-- Details Tab Content End -->
+
+                            </div>
+                            <!-- Courses Details Tab End -->
+
+                        </div>
+                        <!-- Courses Details End -->
+
+                    </div>
+                    <div class="col-lg-5">
+                        <!-- Courses Details Sidebar Start -->
+                        <div class="sidebar">
+
+                            <!-- Sidebar Widget Information Start -->
+                            <div class="sidebar-widget widget-information">
+                                <div class="info-price">
+                                    <span class="price"> Course Content</span>
+                                </div>
+                                <div class="info-list">
+                                    <ul>
+
+                                        {% for module in modules %}
+                                        <li>
+                                            <a href="{% url 'module_detail' module.id %}"
+                                                class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">
+                                                {{ module.title }}
+                                            </a>
+                                        </li>
+                                        {% empty %}
+                                        <li>
+                                            <a>No modules are available.</a>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <!-- Sidebar Widget Information End -->
+
+                            <!-- Sidebar Widget Share Start -->
+                            <div class="sidebar-widget">
+                                <h4 class="widget-title">Share Course:</h4>
+
+                                <ul class="social">
+                                    <li><a href="#"><i class="fa fa-chrome"></i></a></li>
+                                    <li><a href="#"><i class="flaticon-linkedin"></i></a></li>
+                                    <li><a href="#"><i class="flaticon-twitter"></i></a></li>
+                                    <li><a href="#"><i class="flaticon-skype"></i></a></li>
+                                    <li><a href="#"><i class="flaticon-instagram"></i></a></li>
+                                </ul>
+                            </div>
+                            <!-- Sidebar Widget Share End -->
+
+
+                            <div class="description-wrapper mt-5">
+                                <h4 class="tab-title">Certification:</h4>
+                                <div class="certificate-section text-center my-5">
+                                    {% if not user_certified %}
+                                    <!-- Before completion -->
+                                    <div class="alert alert-info">
+                                        <i class="bi bi-lock-fill" style="font-size: 2rem;"></i>
+                                        <p class="mt-3">
+                                            Your certificate will be available here once you complete all lesson.
+                                        </p>
+                                        <a href="#" class="btn btn-outline-primary">
+                                            Continue Course
+                                        </a>
+                                    </div>
+                                    {% else %}
+                                    <!-- After completion -->
+                                    <div class="card shadow-sm">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Congratulations!</h4>
+                                            <p class="card-text">
+                                                You’ve successfully completed <strong>{{course.title}}</strong>.
+                                            </p>
+                                            <a href="{% url 'download_certificate' course.id %}" class="btn btn-success"
+                                                target="_blank">
+                                                <i class="bi bi-download"></i> Download Your Certificate
+                                            </a>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <!-- Courses Details Sidebar End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section section-padding-02 mt-n1">
+            <div class="container">
+
+                <!-- Section Title Start -->
+                <div class="section-title shape-03 text-center">
+                    <h5 class="sub-title">Ask your query</h5>
+                    <h2 class="main-title">From your personal<span> AI assistant</span></h2>
+                </div>
+                <!-- Section Title End -->
+
+                <!-- Testimonial Wrapper End -->
+                <div class="testimonial-wrapper testimonial-active pt-2">
+                    <div class="swiper-container swiper-container-initialized swiper-container-horizontal">
+                        <div class="swiper-wrapper" id="swiper-wrapper-5cf08406bc5dd287" aria-live="polite"
+                            style="transform: translate3d(0px, 0px, 0px);">
+                            <div class="p-1 text-center">
+                                <iframe src="http://127.0.0.1:8000/chatbot/"  class="rounded-5" width="1100" height="300" loading="lazy"></iframe>
+                            </div>
+
+                        </div>
+                        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                    </div>
+                </div>
+                <!-- Testimonial Wrapper End -->
+
+            </div>
+        </div>
+
+
+
+        <!-- Footer Start  -->
+        <div class="section footer-section">
+            <!-- Footer Widget Section Start -->
+            <div class="footer-widget-section">
+
+                <img class="shape-1 animation-down" src="{% static 'images/shape/shape-21.png' %}" alt="Shape">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 order-md-1 order-lg-1">
+
+                            <!-- Footer Widget Start -->
+                            <div style="margin-top:35px" class="footer-widget">
+                                <div class="widget-logo">
+                                    <a href="#"><img src="{% static 'images/techlogo.png' %}" width="250"alt="Logo"></a>
+                                </div>
+
+                                <div class="widget-address">
+                                    
+                                    <p class="text-dark ">We are committed to providing high-quality online education to learners worldwide.</p>
+                                </div>
+
+                                <ul class="widget-info">
+                                    <li>
+                                        <p> <i class="flaticon-email"></i> <a
+                                                href="mailto:address@gmail.com">address@gmail.com</a> </p>
+                                    </li>
+                                    <li>
+                                        <p> <i class="flaticon-phone-call"></i> <a href="tel:9702621413">(970)
+                                                262-1413</a> </p>
+                                    </li>
+                                </ul>
+
+                                <ul class="widget-social">
+                                    <li><a href="#"><i class="flaticon-facebook"></i></a></li>
+                                    <li><a href="#"><i class="flaticon-twitter"></i></a></li>
+                                    <li><a href="#"><i class="flaticon-skype"></i></a></li>
+                                    <li><a href="#"><i class="flaticon-instagram"></i></a></li>
+                                </ul>
+                            </div>
+                            <!-- Footer Widget End -->
+
+                        </div>
+                        <div class="col-lg-6 order-md-3 order-lg-2">
+
+                            <!-- Footer Widget Link Start -->
+                            <div class="footer-widget-link">
+
+                                <!-- Footer Widget Start -->
+                                <div class="footer-widget">
+                                    <h4 class="footer-widget-title">Courses</h4>
+
+                                    <ul class="widget-link">
+                                    {% for course in fcourse %}
+                                        <li><a href="{% url 'course_detail' course.id %}">{{ course.title}}</a></li>
+                                     {% endfor %}
+                                       <li><a href="/course_list">All Courses...</a></li>
+                                    </ul>
+
+                                </div>
+                                <!-- Footer Widget End -->
+
+                                <!-- Footer Widget Start -->
+                                <div class="footer-widget">
+                                    <h4 class="footer-widget-title">Quick Links</h4>
+
+                                    <ul class="widget-link">
+                                        <li><a href="/">Home</a></li>
+                                        <li><a href="/course_list">Our Courses</a></li>
+                                        <li><a href="/about_us">About Us</a></li>
+                                        <li><a href="/contact">Contact</a></li>
+                                        <li><a href="/faq">Course FAQ’s</a></li>
+                                    </ul>
+
+                                </div>
+                                <!-- Footer Widget End -->
+
+                            </div>
+                            <!-- Footer Widget Link End -->
+
+                        </div>
+                        <div class="col-lg-3 col-md-6 order-md-2 order-lg-3">
+
+                            <!-- Footer Widget Start -->
+                            <div class="footer-widget">
+                                <h4 class="footer-widget-title">Subscribe</h4>
+
+                                <div class="widget-subscribe">
+                                    <p>Stay updated with our latest courses and offers.</p>
+
+                                    <div class="widget-form">
+                                        <form action="#">
+                                            <input type="text" placeholder="Email here">
+                                            <button class="btn btn-primary btn-hover-dark">Subscribe Now</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Footer Widget End -->
+
+                        </div>
+                    </div>
+                </div>
+
+                <img class="shape-2 animation-left" src="{% static 'images/shape/shape-22.png' %}" alt="Shape">
+
+            </div>
+            <!-- Footer Widget Section End -->
+
+            <!-- Footer Copyright Start -->
+            <div class="footer-copyright">
+                <div class="container">
+
+                    <!-- Footer Copyright Start -->
+                    <div class="copyright-wrapper">
+                        <div class="copyright-link">
+                            <a href="#">Terms of Service</a>
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Sitemap</a>
+                            <a href="#">Security</a>
+                        </div>
+                        <div class="copyright-text">
+                            <p>&copy; 2021 <span> TechnoLearn </span> Made with <i class="icofont-heart-alt"></i> by <a
+                                    href="#">Robin</a></p>
+                        </div>
+                    </div>
+                    <!-- Footer Copyright End -->
+
+                </div>
+            </div>
+            <!-- Footer Copyright End -->
+
+        </div>
+        <!-- Footer End -->
+
+
+        <!--Back To Start-->
+        <a href="#" class="back-to-top">
+            <i class="icofont-simple-up"></i>
+        </a>
+        <!--Back To End-->
+
+    </div>
+
+
+    <!-- Modernizer & jQuery JS -->
+    <script src="{% static 'js/vendor/modernizr-3.11.2.min.js' %}"></script>
+    <script src="{% static 'js/vendor/jquery-3.5.1.min.js' %}"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="{% static 'js/plugins/popper.min.js' %}"></script>
+    <script src="{% static 'js/plugins/bootstrap.min.js' %}"></script>
+
+    <!-- Plugins JS -->
+    <script src="{% static 'js/plugins/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'js/plugins/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/plugins/video-playlist.js' %}"></script>
+    <script src="{% static 'js/plugins/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'js/plugins/ajax-contact.js' %}"></script>
+
+    <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
+    <script src="{% static 'js/plugins.min.js' %}"></script>
+
+    <!-- Main JS -->
+    <script src="{% static 'js/main.js' %}"></script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const textInput = document.getElementById('text-input');
+            const voiceSelect = document.getElementById('voice-select');
+            const rateSelect = document.getElementById('rate-select');
+            // const playBtn = document.getElementById('play-btn');
+            // const stopBtn = document.getElementById('stop-btn');
+            const downloadBtn = document.getElementById('download-btn');
+            const statusEl = document.getElementById('status');
+            const audioPlayer = document.getElementById('audio-player');
+
+            let audioUrl = null;
+
+            function downloadAudio() {
+                const text = textInput.textContent.trim();
+                if (!text) {
+                    statusEl.textContent = 'Please enter some text.';
+                    return;
+                }
+
+                const data = {
+                    text: text,
+                    lang: voiceSelect.value,
+                    rate: rateSelect.value,
+                };
+
+                fetch('/generate_audio/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCookie('csrftoken')
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(response => {
+                        if (!response.ok) throw new Error('Failed to fetch audio.');
+                        return response.blob();
+                    })
+                    .then(blob => {
+                        const url = window.URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.style.display = 'none';
+                        a.href = url;
+                        a.download = 'speech.mp3';
+                        document.body.appendChild(a);
+                        a.click();
+                        window.URL.revokeObjectURL(url);
+                        document.body.removeChild(a);
+                        statusEl.textContent = 'Download started.';
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        statusEl.textContent = 'Error generating audio file.';
+                    });
+            }
+
+            function getCookie(name) {
+                const cookies = document.cookie.split(';');
+                for (let cookie of cookies) {
+                    const [key, value] = cookie.trim().split('=');
+                    if (key === name) return decodeURIComponent(value);
+                }
+                return null;
+            }
+
+            // Event listeners
+            downloadBtn.addEventListener('click', downloadAudio);
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text to PDF Generator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center p-6">
+  <div class="bg-white rounded-xl shadow-xl p-8 w-full max-w-3xl">
+    <h1 class="text-3xl font-extrabold mb-6 text-center text-blue-700">Text to PDF Generator</h1>
+    <form method="post">
+      {% csrf_token %}
+      <div class="mb-6">
+        <label for="text" class="block text-sm font-medium text-gray-700 mb-2">Enter Your Text</label>
+        <textarea id="text" name="text" rows="10" placeholder="Type or paste your text here..."
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+      </div>
+      <div class="grid grid-cols-3 gap-4 mb-6">
+        <div>
+          <label for="page_size" class="block text-sm font-medium text-gray-700 mb-1">Page Size</label>
+          <select id="page_size" name="page_size"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500">
+            <option value="a4">A4</option>
+            <option value="letter">Letter</option>
+            <option value="legal">Legal</option>
+          </select>
+        </div>
+        <div>
+          <label for="orientation" class="block text-sm font-medium text-gray-700 mb-1">Orientation</label>
+          <select id="orientation" name="orientation"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500">
+            <option value="portrait">Portrait</option>
+            <option value="landscape">Landscape</option>
+          </select>
+        </div>
+        <div>
+          <label for="font_size" class="block text-sm font-medium text-gray-700 mb-1">Font Size</label>
+          <select id="font_size" name="font_size"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500">
+            <option value="12">12px</option>
+            <option value="14">14px</option>
+            <option value="16" selected>16px</option>
+            <option value="18">18px</option>
+            <option value="20">20px</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit"
+              class="w-full sm:w-auto px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition">
+        Download PDF
+      </button>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,116 @@
+{% extends 'profile.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+<div class="main-content-wrapper">
+    <div class="container-fluid">
+
+        <div class="container" style="min-height: 70vh;">
+            <!-- Page Banner Start -->
+            <div class="page-banner-content pb-2">
+                <h2 class="title">My <span>Certificates</span></h2>
+            </div>
+            <!-- Page Banner End -->
+
+            <div class="row">
+                {% if certificates %}
+                {% for certificate in certificates %}
+                <div class="col-md-6 col-lg-4 mb-3">
+                    <div class="certificate-card card h-100">
+                        <img src="{{ certificate.course.image.url }}" height="210" class="certificate-img card-img-top"
+                            alt="Certificate">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ certificate.course.title }}</h5>
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <span class="certificate-date">
+                                    <i class="bi bi-calendar"></i> Issued on : {{ certificate.date_of_completion }}
+                                </span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <span class="certificate-date">
+                                    <i class="bi bi-mortarboard"></i> Instructor : {{ certificate.course.instructor }}
+                                </span>
+                            </div>
+
+                        </div>
+                      <div class="card-footer bg-transparent border-top-0">
+    <div class="d-flex flex-wrap gap-2">
+        <!-- View Button -->
+        <a 
+            href="{{ certificate.pdf_files.url }}" 
+            target="_blank" 
+            class="btn btn-outline-primary btn-sm"
+            style="all: unset; display: inline-block; padding: 8px 16px; border: 1px solid #0d6efd; color: #0d6efd; border-radius: 5px; text-align: center; cursor: pointer;"
+        >
+            <i class="bi bi-eye"></i> View Certificate
+        </a>
+
+        <!-- Download Button -->
+        <a href="{{ certificate.pdf_files.url }}" 
+            download 
+            class="btn btn-outline-secondary btn-sm"
+            style="all: unset; display: inline-block; padding: 8px 16px; border: 1px solid #6c757d; color: #6c757d; border-radius: 5px; text-align: center; cursor: pointer;">
+            <i class="bi bi-download"></i> Download
+        </a>
+    </div>
+</div>
+
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <p>No certificates available.</p>
+                {% endif %}
+            </div>
+
+            <!-- Certificate Modal -->
+            <div class="modal fade" id="certificateModal" tabindex="-1" aria-labelledby="certificateModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-xl modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="certificateModalLabel">Certificate Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <iframe id="modal-certificate-img" src="{{ certificate.pdf_files.url }}" style="width:100%; height:600px;"
+                                frameborder="0"></iframe>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                <i class="bi bi-x-circle"></i> Close
+                            </button>
+                            <div>
+                               
+                                <button type="button" class="btn btn-primary ms-2">
+                                    <i class="bi bi-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- container -->
+    </div> <!-- container-fluid -->
+</div> <!-- main-content-wrapper -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const viewButtons = document.querySelectorAll('.view-certificate');
+        const modalTitle = document.getElementById('certificateModalLabel');
+        const modalImg = document.getElementById('modal-certificate-img');
+
+        viewButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const imgSrc = button.getAttribute('data-img');
+                const title = button.getAttribute('data-title');
+
+                modalTitle.textContent = title;
+                modalImg.src = imgSrc;
+            });
+        });
+    });
+</script>
+
+{% endblock %}
