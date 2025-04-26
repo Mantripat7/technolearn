@@ -146,6 +146,7 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 STATIC_URL = 'static/'
 STATICFILES_DIRS=[y]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 
 # Default primary key field type
