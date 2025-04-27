@@ -3,6 +3,7 @@
 
 {% block content %}
 <style>
+
     .alert {
         position: relative;
         padding: 15px 40px 15px 20px;
@@ -68,35 +69,22 @@
 </div>
 <!-- Page Banner End -->
 
-        {% if messages %}
-        {% for message in messages %}
-        <div class="alert alert-success dismissible">
-            <span>{{ message }}</span>
-            <button type="button" class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
-        </div>
-        {% endfor %}
-        {% endif %}
-
-<!-- Contact Map Start -->
-<div class="section section-padding-02">
-    <div class="container">
-
-        <!-- Contact Map Wrapper Start -->
-        <div class="contact-map-wrapper">
-            <iframe id="gmap_canvas"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3396.9601139950014!2d74.82558107470157!3d31.63494244147423!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39196527e76e3995%3A0xf5779932d3dab5d0!2sGuru%20Nanak%20Dev%20University!5e0!3m2!1sen!2sin!4v1745584731557!5m2!1sen!2sin"></iframe>
-
-        </div>
-        <!-- Contact Map Wrapper End -->
-
-    </div>
-</div>
-<!-- Contact Map End -->
 
 <!-- Contact Start -->
 <div class="section section-padding">
     <div class="container">
-
+  {% if messages %}
+    <div class="message-wrapper">
+      {% for msg in messages %}
+        <div class="alert" role="alert">
+          <span>{{ msg }}</span>
+          <button type="button" class="close-btn" onclick="this.parentElement.remove()">
+            &times;
+          </button>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
         <!-- Contact Wrapper Start -->
         <div class="contact-wrapper">
             <div class="row align-items-center">
@@ -114,7 +102,7 @@
                             </div>
                             <div class="info-content">
                                 <h6 class="title">Phone No.</h6>
-                                <p><a href="tel:88193326867">(+91) 987654321</a></p>
+                                <p> <a href="tel:6239282536">(+91) 62392 82536</a></p>
                             </div>
                         </div>
                         <!-- Single Contact Info End -->
@@ -125,7 +113,7 @@
                             </div>
                             <div class="info-content">
                                 <h6 class="title">Email Address.</h6>
-                                <p><a href="mailto:edule100@gmail.com">techlearn7@gmail.com</a></p>
+                                <p><a href="mailto:sukhmandeepkaur295@gmail.com">sukhman@gmail.com</a></p>
                             </div>
                         </div>
                         <!-- Single Contact Info End -->
@@ -151,7 +139,7 @@
                         <h3 class="title">Get in Touch <span>With Us</span></h3>
 
                         <div class="form-wrapper">
-                            <form id="contact-form" method="POST">
+                            <form id="contact-form" action ="" method="POST">
                                 {% csrf_token %}
 
                                 <!-- Name Field -->
@@ -174,17 +162,8 @@
                                     <textarea name="message" placeholder="Message" rows="4" required></textarea>
                                 </div>
 
-                                <!-- Feedback Messages -->
-                                <!-- {% if messages %}
-                                <div class="single-form">
-                                    {% for message in messages %}
-                                    <p class="form-message">{{ message }}</p>
-                                    {% endfor %}
-                                </div>
-                                {% endif %} -->
-
                                 <!-- Submit Button -->
-
+    
                                 <div class="single-form">
                                     <button class="btn btn-primary btn-hover-dark w-100" type="submit">
                                         Send Message <i class="flaticon-right"></i>
@@ -204,4 +183,21 @@
     </div>
 </div>
 <!-- Contact End -->
+
+<!-- Contact Map Start -->
+<div class="section section-padding-02">
+    <div class="container">
+
+        <!-- Contact Map Wrapper Start -->
+        <div class="contact-map-wrapper">
+            <iframe id="gmap_canvas"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3396.9601139950014!2d74.82558107470157!3d31.63494244147423!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39196527e76e3995%3A0xf5779932d3dab5d0!2sGuru%20Nanak%20Dev%20University!5e0!3m2!1sen!2sin!4v1745584731557!5m2!1sen!2sin"></iframe>
+
+        </div>
+        <!-- Contact Map Wrapper End -->
+
+    </div>
+</div>
+<!-- Contact Map End -->
+
 {% endblock %}

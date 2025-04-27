@@ -190,32 +190,38 @@
         <!-- Section Title End -->
 
         <!-- Testimonial Wrapper End -->
-        <div class="testimonial-wrapper testimonial-active pt-2">
-            <div class="swiper-container swiper-container-initialized swiper-container-horizontal">
-                <div class="swiper-wrapper" id="swiper-wrapper-5cf08406bc5dd287" aria-live="polite"
-                    style="transform: translate3d(0px, 0px, 0px);">
+<div class="p-1 text-center">
+  <!-- make this wrapper fluid and center it -->
 
-                    <div class="p-1 text-center">
-                        <div class="p-1 text-center position-relative">
-                            {% if user %}
-                            <iframe src="http://127.0.0.1:8000/chatbot/" width="1100" height="500"
-                                class="rounded"></iframe>
-                            {% else %}
-                            <div class="position-relative d-inline-block">
-                                <iframe src="http://127.0.0.1:8000/chatbot/" width="1100" height="500" class="rounded"
-                                    style="filter: blur(8px); pointer-events: none;"></iframe>
-                                <div class="position-absolute top-50 start-50 translate-middle">
-                                    <a href="/login" class="btn btn-primary btn-lg">
-                                        Please Login to Access
-                                    </a>
-                                </div>
-                            </div>
-                            {% endif %}
-                        </div>
-
-
-
-                    </div>
+  <div 
+    class="p-1 position-relative w-100" 
+    style="max-width: 1100px; margin: 0 auto;"
+  >
+    {% if user %}
+      <iframe
+        src="https://technolearn.onrender.com/chatbot"
+        height="500"
+        class="rounded w-100"
+        allowfullscreen
+      ></iframe>
+    {% else %}
+      <div class="position-relative w-100">
+        <iframe
+          src="https://technolearn.onrender.com/chatbot"
+          height="500"
+          class="rounded w-100"
+          style="filter: blur(8px); pointer-events: none;"
+          allowfullscreen
+        ></iframe>
+        <div class="position-absolute top-50 start-50 translate-middle">
+          <a href="/login" class="btn btn-primary btn-lg">
+            Please Login to Access
+          </a>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
 
 
                 </div>

@@ -20,7 +20,9 @@ import json
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from django.core.files.base import ContentFile
-
+from django.core.mail import send_mail
+import random
+import string
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -361,6 +363,36 @@ def profile_section(request):
         'user_profile': user_profile,
     }
     return render(request, 'profile_section.html', context)
+def generate_random_password(length=6):
+    chars = string.ascii_letters + string.digits
+    return ''.join(random.choice(chars) for _ in range(length))
+
+def forgot_password(request):
+    if request.session.get('Email'):
+        email = request.session.get('Email')
+        if get_object_or_404(Userregister, email=email):
+            user= get_object_or_404(Userregister, email=email)
+            # generate
+            new_pass = generate_random_password(6)
+            print(new_pass)
+            # password updte
+            user.password = new_pass
+            user.save()
+            # mail it 
+            send_mail(
+            subject='Your New Password',
+            message=(
+                f'Hello {user.name},\n\n'
+                f'Your password has been reset. Your new password is:\n\n'
+                f'    {new_pass}\n\n'
+                'Please log in and happy learning.'
+            ),
+            from_email=None,         
+            recipient_list=[email],
+            fail_silently=False)
+            return render(request, "send_password.html",{"user":user})
+    else:
+        return redirect('login')
 
 
 def change_password(request):
@@ -518,10 +550,10 @@ def about_us(request):
 
 def contact(request):
     if request.method == 'POST':
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        subject = request.POST.get('subject')
-        message = request.POST.get('message')
+        name = request.POST.get('name', '').strip()
+        email = request.POST.get('email', '').strip()
+        subject = request.POST.get('subject', '').strip()
+        message = request.POST.get('message', '').strip()
 
         if name and email and subject and message:
             Contact.objects.create(
@@ -530,13 +562,27 @@ def contact(request):
                 subject=subject,
                 message=message
             )
+
+            send_mail(
+                subject=f"Thanks for contacting us, {name}!",
+                message=(
+                    f"Hi {name},\n\n"
+                    f"We’ve received your message on “{subject}”.\n\n"
+                    f"Message you sent:\n{message}\n\n"
+                    "We’ll get back to you shortly. Happy learning!\n\n"
+                    "— The TechnoLearn Team"
+                ),
+                from_email=None,            
+                recipient_list=[email],
+                fail_silently=False,
+            )
+
             messages.success(request, "Your message has been sent successfully.")
-            return redirect('contact')
         else:
             messages.error(request, "Please fill in all fields.")
-            return redirect('contact')
-    
+
     return render(request, 'contact.html')
+
 
 
 def logout_view(request):

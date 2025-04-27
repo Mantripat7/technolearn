@@ -23,13 +23,25 @@ x=os.path.join(BASE_DIR,"templates")
 y=os.path.join(BASE_DIR,"static")
 
 
-
-
-
-
-
-
 SECRET_KEY = os.getenv('SECRET_KEY')
+
+
+# Use Django’s standard SMTP email backend
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# Gmail SMTP server
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+# Your Gmail address and app-password
+EMAIL_HOST_USER = 'openmaterial2@gmail.com'
+EMAIL_HOST_PASSWORD = 'enrz kbdm nuvc jazj'
+
+# The default 
+DEFAULT_FROM_EMAIL = 'openmaterial2@gmail.com'
+
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
