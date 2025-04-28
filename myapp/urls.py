@@ -20,6 +20,7 @@ urlpatterns = [
     path('create_checkout_session/<int:course_id>/',views.create_checkout_session,name='create_checkout_session'),
     path('course_detail/<int:course_id>/',views.course_detail,name='course_detail'),
     path('module_detail/<int:module_id>/',views.module_detail,name='module_detail'),
+    path('mcq/<int:module_id>/',views.mcq,name='mcq'),
     path('faq/', views.faq, name='faq'),
     path('about_us/', views.about_us, name='about_us'),
     path('change-password/', views.change_password, name='change_password'),
@@ -28,6 +29,7 @@ urlpatterns = [
     path('my_certificates/', views.my_certificates, name='my_certificates'),
     path('profile_course/', views.profile_course, name='profile_course'),
     path('contact/', views.contact, name='contact'),
+    path('thanks/', views.thanks, name='thanks'),
     path('logout/', views.logout_view, name='logout'),
     path('download_certificate/<int:course_id>/', views.download_certificate, name='download_certificate'),
   

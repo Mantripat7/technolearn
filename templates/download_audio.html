@@ -105,7 +105,7 @@
     <div class="container py-5">
         <div class="text-center mb-5">
             <h1 class="display-4 fw-bold text-primary mb-3">Download Text to Speech </h1>
-            <p class="lead text-muted">Convert study material into natural sounding audio and download it as an MP3 file</p>
+            <p class="lead text-muted">Convert study material into sounding audio and download it as an MP3 file</p>
         </div>
 
         <div class="card shadow-lg mb-5">
@@ -113,11 +113,11 @@
 
             <div class="card-body p-4 p-md-5">
                 <div class="mb-4">  <label for="text-input" class="form-label">Customize note content :</label>
-  <textarea 
-    id="text-input" 
-    rows="6" 
-    class="form-control px-4 py-3 rounded border border-secondary" 
-    placeholder="Type or paste your text here...">{{ content.pdf_material|default_if_none:"" }}
+                <textarea 
+                id="text-input" 
+                rows="6" 
+                class="form-control px-4 py-3 rounded border border-secondary" 
+                placeholder="Type or paste your text here...">{{ content.pdf_material|default_if_none:"" }}
                  </textarea>
                 </div>
 

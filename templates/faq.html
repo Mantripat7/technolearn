@@ -179,6 +179,8 @@
     </div>
 </div>
 <!-- FAQ End -->
+
+
 <div class="section section-padding-02 mt-n1" id="ai">
     <div class="container">
 
@@ -190,47 +192,33 @@
         <!-- Section Title End -->
 
         <!-- Testimonial Wrapper End -->
-<div class="p-1 text-center">
-  <!-- make this wrapper fluid and center it -->
+        <div class="p-1 text-center">
+            <!-- make this wrapper fluid and center it -->
 
-  <div 
-    class="p-1 position-relative w-100" 
-    style="max-width: 1100px; margin: 0 auto;"
-  >
-    {% if user %}
-      <iframe
-        src="https://technolearn.onrender.com/chatbot"
-        height="500"
-        class="rounded w-100"
-        allowfullscreen
-      ></iframe>
-    {% else %}
-      <div class="position-relative w-100">
-        <iframe
-          src="https://technolearn.onrender.com/chatbot"
-          height="500"
-          class="rounded w-100"
-          style="filter: blur(8px); pointer-events: none;"
-          allowfullscreen
-        ></iframe>
-        <div class="position-absolute top-50 start-50 translate-middle">
-          <a href="/login" class="btn btn-primary btn-lg">
-            Please Login to Access
-          </a>
+            <div class="p-1 position-relative w-100" style="max-width: 1100px; margin: 0 auto;">
+                {% if user %}
+                <iframe src="https://technolearn.onrender.com/chatbot" height="500" class="rounded w-100"
+                    allowfullscreen></iframe>
+                {% else %}
+                <div class="position-relative w-100">
+                    <iframe src="https://technolearn.onrender.com/chatbot" height="500" class="rounded w-100"
+                        style="filter: blur(8px); pointer-events: none;" allowfullscreen></iframe>
+                    <div class="position-absolute top-50 start-50 translate-middle">
+                        <a href="/login" class="btn btn-primary btn-lg">
+                            Please Login to Access
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
         </div>
-      </div>
-    {% endif %}
-  </div>
+    </div>
+    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
 </div>
 
 
-                </div>
-                <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-            </div>
-        </div>
-        <!-- Testimonial Wrapper End -->
 
-    </div>
+</div>
 </div>
 
 {% endblock %}

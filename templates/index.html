@@ -1,6 +1,22 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<style>
+
+    .single-courses:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+/* Image zoom on hover */
+.courses-images img {
+  transition: transform 0.3s ease;
+}
+
+.single-courses:hover .courses-images img {
+  transform: scale(1.05);
+}
+</style>
 
 <!-- Slider Start -->
 <div class="section slider-section">
@@ -115,7 +131,7 @@
                         {% for course in courses %}
                         <div class="col-lg-4 col-md-6">
                             <!-- Single Course Start -->
-                            <div class="single-courses">
+                            <div style="background-color:#eefbf3;" class="single-courses">
                                 <div class="courses-images">
                                     <a href="{% url 'course_detail' course.id %}">
                                         {% if course.image %}
@@ -148,7 +164,7 @@
                                     <div class="courses-price-review">
 
                                         <div class="courses-price">
-                                            <span class="sale-parice">Rs. {{ course.price }}</span>
+                                            <span class="text-white sale-parice">Rs. {{ course.price }}</span>
                                         </div>
 
                                         <div class="courses-review">

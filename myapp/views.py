@@ -33,19 +33,14 @@ def faq(request):
         user  = get_object_or_404(Userregister, email = email)
     else:
         user=False
-    return render(request,'faq.html' , {'user' : user})
+    return render(request,'faq.html' , {'user': user})
 
 
 def login(request):
     if request.method == "POST":
         email = request.POST.get('em', '').strip()
         password = request.POST.get('pw', '')
-        
-        # Validate input
-        if not email or not password:
-            msg = "Email and password are required."
-            return render(request, 'login.html', {'msg': msg})
-
+    
         user_qs = Userregister.objects.filter(email=email, password=password)
         
         if user_qs.exists():
@@ -136,6 +131,53 @@ def course_list(request):
     courses=Course.objects.all()
     return render (request,'courses.html',{'courses':courses, 'email': email})
 
+def mcq(request,module_id):
+    email = request.session.get('Email')
+    user  = get_object_or_404(Userregister, email=email)
+     
+    request.session['module_id'] = module_id
+    module =get_object_or_404(Module,id=module_id)
+
+    # course
+    course = module.course
+
+    # all module
+    modules = course.module_set.all()
+
+    lesson= module.lesson_set.first()
+    mcqs=lesson.mcqs.all()
+    if not mcqs:
+        mcqs=""
+
+
+    if request.method == 'POST':
+        lesson_id = request.POST.get('lesson_id')
+        lesson    = get_object_or_404(Lesson, id=lesson_id)
+        mcqs      = lesson.mcqs.all()
+        total   = mcqs.count()
+        correct = 0
+        for q in mcqs:
+            ans = request.POST.get(f'question_{q.id}')
+            print(ans)
+            if ans and ans == q.correct_option:
+                print(ans==q.correct_option)
+                correct += 1
+        crs = lesson.module.course
+        email = request.session.get('Email')
+        user  = get_object_or_404(Userregister, email=email)
+        LessonTestResult.objects.update_or_create(
+            user   = user,
+            lesson = lesson,
+            course = crs,
+            defaults = {'score': correct}
+        )
+
+        messages.success(request, f"You scored {correct} out of {total} on “{lesson.title}.”")
+        return redirect('module_detail', module_id=module.id)
+    print(mcqs)
+
+    return render(request,'mcq.html',{'module':module,'lesson':lesson,'mcqs':mcqs, 'modules':modules, 'course':course,'user':user})
+
 
 def module_detail(request,module_id):
     # user
@@ -192,16 +234,19 @@ def payment_success(request,course_id):
     course=get_object_or_404(Course,id=course_id)
     user_email = request.session.get('Email')
     if not user_email:
-     return render(request,'payment_failed.html')
+     return render(request,'login.html')
     
     user =get_object_or_404(Userregister,email=user_email)
     user.purchase_courses.add(course)
     
-    return render(request,"payment_failed.html",{"course":course})
+    return render(request,"payment_success.html",{"course":course})
 
 
 def payment_failed(request):
     return render(request,'payment_failed.html')
+
+def thanks(request):
+    return render(request,'thanks.html')
 
 
 def index(request):
@@ -233,8 +278,8 @@ def  create_checkout_session(request,course_id):
             'quantity':1,
         }],
         mode='payment',
-        success_url=f"http://127.0.0.1:8000/payment_success/{course_id}",
-        cancel_url="http://127.0.0.1:8000/payment_failed",
+        success_url=f"https://technolearn.onrender.com/payment_success/{course_id}",
+        cancel_url = f"https://technolearn.onrender.com/payment_failed/",
     )
     return redirect(session.url)
 
@@ -548,40 +593,48 @@ def about_us(request):
 
 
 
+
+
 def contact(request):
+    print("post")
     if request.method == 'POST':
-        name = request.POST.get('name', '').strip()
+        # Grab form fields
+        name  = request.POST.get('name', '').strip()
         email = request.POST.get('email', '').strip()
         subject = request.POST.get('subject', '').strip()
         message = request.POST.get('message', '').strip()
 
-        if name and email and subject and message:
-            Contact.objects.create(
-                name=name,
-                email=email,
-                subject=subject,
-                message=message
-            )
+        # Save into the database
+        Contact.objects.create(
+            name=name,
+            email=email,
+            subject=subject,
+            message=message
+        )
 
-            send_mail(
-                subject=f"Thanks for contacting us, {name}!",
-                message=(
-                    f"Hi {name},\n\n"
-                    f"We’ve received your message on “{subject}”.\n\n"
-                    f"Message you sent:\n{message}\n\n"
-                    "We’ll get back to you shortly. Happy learning!\n\n"
-                    "— The TechnoLearn Team"
-                ),
-                from_email=None,            
-                recipient_list=[email],
-                fail_silently=False,
-            )
+        # Send confirmation email
+        send_mail(
+            subject=f"Thanks for contacting us, {name}!",
+            message=(
+                f"Hi {name},\n\n"
+                f"We’ve received your message on “{subject}”.\n\n"
+                f"Your message:\n{message}\n\n"
+                "We’ll be in touch soon!\n\n"
+                "— The TechnoLearn Team"
+            ),
+            from_email=None,
+            recipient_list=[email],
+            fail_silently=False,
+        )
 
-            messages.success(request, "Your message has been sent successfully.")
-        else:
-            messages.error(request, "Please fill in all fields.")
+        # Flash a success message
+       
 
-    return render(request, 'contact.html')
+        # Redirect back to the contact page (PRG pattern)
+        return redirect('thanks')
+
+    # GET or any other method: just show the form
+    return render(request, "contact.html")
 
 
 

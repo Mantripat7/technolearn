@@ -21238,7 +21238,9 @@ only screen and (min-width:1600px) {
 
 .single-courses .courses-images a img {
     width: 100%;
-    border-radius: 15px
+    border-radius: 15px;
+
+
 }
 
 .single-courses .courses-images .courses-option {
@@ -21352,8 +21354,8 @@ only screen and (min-width:992px) and (max-width:1199px) {
 .single-courses .courses-content .courses-author .author .author-name .name {
     color: #52565b;
     font-family: "Montserrat", sans-serif;
-    font-size: 14px;
-    font-weight: 400
+    font-size: 16px;
+    font-weight: 500
 }
 
 @media only screen and (max-width:575px),
@@ -21477,7 +21479,7 @@ only screen and (min-width:992px) and (max-width:1199px) {
 }
 
 .single-courses .courses-content .courses-price-review {
-    background-color: #eefbf3;
+    background-color: #2b8e47;
     padding: 15px 20px;
     border-radius: 10px;
     display: -webkit-box;
