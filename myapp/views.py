@@ -408,37 +408,52 @@ def profile_section(request):
         'user_profile': user_profile,
     }
     return render(request, 'profile_section.html', context)
+
+
 def generate_random_password(length=6):
     chars = string.ascii_letters + string.digits
     return ''.join(random.choice(chars) for _ in range(length))
 
+
+
+
 def forgot_password(request):
-    if request.session.get('Email'):
-        email = request.session.get('Email')
-        if get_object_or_404(Userregister, email=email):
-            user= get_object_or_404(Userregister, email=email)
-            # generate
-            new_pass = generate_random_password(6)
-            print(new_pass)
-            # password updte
-            user.password = new_pass
-            user.save()
-            # mail it 
-            send_mail(
-            subject='Your New Password',
-            message=(
-                f'Hello {user.name},\n\n'
-                f'Your password has been reset. Your new password is:\n\n'
-                f'    {new_pass}\n\n'
-                'Please log in and happy learning.'
-            ),
-            from_email=None,         
-            recipient_list=[email],
-            fail_silently=False)
-            return render(request, "send_password.html",{"user":user})
+
+    if request.method == 'POST' and request.POST.get('email'):
+        email = request.POST['email'].strip()
+        source = 'form'
+    elif request.session.get('Email'):
+        email = request.session['Email']
+        source = 'session'
     else:
         return redirect('login')
 
+    # Look up the user or 404
+    user = get_object_or_404(Userregister, email=email)
+
+    # Generate & save new password
+    new_pass = generate_random_password(6)
+    user.password = new_pass
+    user.save()
+
+    # Email the new password
+    send_mail(
+        subject='Your New Password',
+        message=(
+            f'Hello {user.name},\n\n'
+            f'Your password has been reset (via {source}).\n'
+            f'Your new password is:\n\n'
+            f'    {new_pass}\n\n'
+            'Please log in and change it as soon as possible.\n\n'
+            '— The TechnoLearn Team'
+        ),
+        from_email=None,
+        recipient_list=[email],
+        fail_silently=False,
+    )
+
+    # Flash a one-time success message
+    return render(request, "send_password.html", {"user":user})
 
 def change_password(request):
     if request.method == 'POST':
