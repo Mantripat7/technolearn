@@ -198,7 +198,7 @@ def module_detail(request,module_id):
     mcqs=lesson.mcqs.all()
     if not mcqs:
         mcqs=""
-
+    
     user_certified =  modules.count() == LessonTestResult.objects.filter(user=user, course=course).count()
 
     if request.method == 'POST':
@@ -538,11 +538,9 @@ def download_certificate(request, course_id):
     PAGE_WIDTH, PAGE_HEIGHT = 2000, 1414
     p = canvas.Canvas(buffer, pagesize=(PAGE_WIDTH, PAGE_HEIGHT))
 
-    # 3a) Draw your updated template
     tpl = os.path.join(settings.BASE_DIR, 'static', 'images', 'certify.png')
     p.drawImage(ImageReader(tpl), 0, 0, width=PAGE_WIDTH, height=PAGE_HEIGHT)
 
-    # 3b) Register your fonts
     fonts_dir = os.path.join(settings.BASE_DIR, 'static', 'fonts')
     pdfmetrics.registerFont(TTFont('Cinzel',         os.path.join(fonts_dir, 'Cinzel-Regular.ttf')))
     pdfmetrics.registerFont(TTFont('Cinzel-Bold',    os.path.join(fonts_dir, 'Cinzel-Bold.ttf')))
@@ -598,13 +596,11 @@ def about_us(request):
 def contact(request):
     print("post")
     if request.method == 'POST':
-        # Grab form fields
         name  = request.POST.get('name', '').strip()
         email = request.POST.get('email', '').strip()
         subject = request.POST.get('subject', '').strip()
         message = request.POST.get('message', '').strip()
 
-        # Save into the database
         Contact.objects.create(
             name=name,
             email=email,
@@ -612,7 +608,6 @@ def contact(request):
             message=message
         )
 
-        # Send confirmation email
         send_mail(
             subject=f"Thanks for contacting us, {name}!",
             message=(
@@ -627,13 +622,8 @@ def contact(request):
             fail_silently=False,
         )
 
-        # Flash a success message
-       
-
-        # Redirect back to the contact page (PRG pattern)
         return redirect('thanks')
 
-    # GET or any other method: just show the form
     return render(request, "contact.html")
 
 
