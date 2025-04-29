@@ -267,7 +267,7 @@
                                                 <div class="description-wrapper">
                                                     <h3 class="tab-title">{{ lesson.title }} ? </h3>
                                                     {% if lesson.pdf_material %}
-                                                    <div style="white-space: pre-wrap;">
+                                                    <div style="">
                                                         {{ lesson.pdf_material|safe}}
                                                     </div>
                                                     {% else %}
@@ -695,33 +695,46 @@
         </div>
         
         <!-- ask ai Start  -->
-        <div class="section section-padding-02 mt-n1">
-            <div class="container">
+<div class="section section-padding bg-light mt-n1" id="ai">
+    <div class="container">
 
-                <!-- Section Title Start -->
-                <div class="section-title shape-03 text-center">
-                    <h5 class="sub-title">Ask your query</h5>
-                    <h2 class="main-title">From your personal<span> AI assistant</span></h2>
-                </div>
-                <!-- Section Title End -->
+        <!-- Section Title Start -->
+        <div class="section-title shape-03 text-center ">
+            <h5 class="sub-title">Ask your query</h5>
+            <h2 class="main-title">From your personal<span> AI assistant</span></h2>
+        </div>
+        <!-- Section Title End -->
 
-             
-                <div class="testimonial-wrapper testimonial-active pt-2">
-                    <div class="swiper-container swiper-container-initialized swiper-container-horizontal">
-                        <div class="swiper-wrapper" id="swiper-wrapper-5cf08406bc5dd287" aria-live="polite"
-                            style="transform: translate3d(0px, 0px, 0px);">
-                            <div class="p-1 text-center">
-                                <iframe src="https://technolearn.onrender.com/chatbot/" class="rounded-5" width="1100" height="300"
-                                    loading="lazy"></iframe>
-                            </div>
+        <!-- Testimonial Wrapper End -->
+        <div class="p-1 text-center">
+            <!-- make this wrapper fluid and center it -->
 
-                        </div>
-                        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+            <div class="p-1 position-relative w-100" style="max-width: 1100px; margin: 0 auto;">
+                {% if user %}
+                <iframe src="https://technolearn.onrender.com/chatbot" height="500" class="rounded w-100"
+                    allowfullscreen></iframe>
+                    <div class="courses-btn text-center">
+            <a href="/course_list" class="btn btn-secondary btn-hover-primary">Clear your doubt now !</a>
+        </div>
+                {% else %}
+                <div class="position-relative w-100">
+                    <iframe src="https://technolearn.onrender.com/chatbot" height="500" class="rounded w-100"
+                        style="filter: blur(8px); pointer-events: none;" allowfullscreen></iframe>
+                    <div class="position-absolute top-50 start-50 translate-middle">
+                        <a href="/login" class="btn btn-primary btn-lg">
+                            Please Login to Access
+                        </a>
                     </div>
-                </div>
-              
+                </div><div class="courses-btn text-center">
+            <a href="/course_list" class="btn btn-secondary btn-hover-primary">Try Now !</a>
+        </div>
+                {% endif %}
             </div>
         </div>
+    </div>
+    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+</div>
+
         <!-- ask ai End -->
 
         <!-- Footer Start  -->

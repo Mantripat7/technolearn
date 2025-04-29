@@ -107,13 +107,15 @@
                     </div>
                     <!-- Form Content -->
                     <div class="card-body">
-                        <form method="post" action="/pdftext">
+                        <form method="post" action="{% url 'pdftext' lesson.id %}">
                             {% csrf_token %}
                             <!-- Textarea Preview -->
                             <div class="mb-4">
                                 <label for="text" class="form-label">Preview Your PDF Content:</label>
-                                <textarea id="text" name="text" class="form-control px-4 py-3" rows="6" placeholder="Your PDF content will appear here..." readonly>{{ content.pdf_material|default_if_none:"" }}</textarea>
+                                <textarea id="text" name="text" class="form-control px-4 py-3" rows="6" placeholder="Your PDF content will appear here..." readonly>
+                                    {{ content|default_if_none:"" }}</textarea>
                             </div>
+                           
                             <!-- Settings Grid -->
                             <div class="row g-3 mb-4">
                                 <div class="col-md-4">

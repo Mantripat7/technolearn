@@ -11,7 +11,7 @@ urlpatterns = [
     path('download_notes/<int:lesson_id>/',views.download_notes, name="download_notes"),
     path('download_audio/<int:lesson_id>/',views.download_audio, name="download_audio"),
     path('generate_audio/',views.generate_audio, name="generate_audio"),
-    path('pdftext',views.pdftext),
+    path('pdftext<int:lesson_id>/',views.pdftext, name="pdftext"),
     path('login/',views.login, name="login"),
     path('register/',views.register),
     path('course_list/',views.course_list, name="course_list"),

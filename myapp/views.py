@@ -23,6 +23,8 @@ from django.core.files.base import ContentFile
 from django.core.mail import send_mail
 import random
 import string
+from fpdf import FPDF
+import re
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -285,50 +287,31 @@ def  create_checkout_session(request,course_id):
 
 
 
-def pdftext(request):
+
+def pdftext(request,lesson_id):
     if request.method == 'POST':
-        # Retrieve data directly from POST
-        text = request.POST.get('text', '').strip()
-        page_size = request.POST.get('page_size', 'a4')
-        orientation = request.POST.get('orientation', 'portrait')
-        font_size = int(request.POST.get('font_size', '16'))
+        lesson = get_object_or_404(Lesson, pk=lesson_id)
+        html_content = lesson.pdf_material  
 
-        # Map page size
-        PAGE_MAP = {'a4': A4, 'letter': letter, 'legal': legal}
-        base_size = PAGE_MAP.get(page_size, A4)
-        pagesize = landscape(base_size) if orientation == 'landscape' else portrait(base_size)
+        page_size  = request.POST.get('page_size', 'A4').upper()
+        orientation = request.POST.get('orientation', 'P').upper() 
+        font_size  = int(request.POST.get('font_size', '16'))
 
-        # Create PDF response
-        response = HttpResponse(content_type='application/pdf')
-        response['Content-Disposition'] = 'attachment; filename="text-document.pdf"'
+        buffer = BytesIO()
+        pdf = FPDF(orientation=orientation, unit='mm', format=page_size)
+        pdf.add_page()
+        pdf.set_font("Helvetica", size=font_size)
 
-        # Generate PDF
-        p = canvas.Canvas(response, pagesize=pagesize)
-        p.setFont("Helvetica", font_size)
-        width, height = pagesize
-        x_margin = 40
-        y = height - 40
-        line_height = font_size + 2
+        pdf.write_html(html_content)
 
-        # Write lines to the PDF
-        for line in text.splitlines():
-            while len(line) > 0:
-                if y < 40:  
-                    p.showPage()
-                    p.setFont("Helvetica", font_size)
-                    y = height - 40
+        pdf.output(buffer)
+        buffer.seek(0)
 
-                max_line_length = (width - 2 * x_margin) / (font_size * 0.6)  
-                chunk = line[:int(max_line_length)]
-                line = line[int(max_line_length):]
-
-                p.drawString(x_margin, y, chunk.strip())
-                y -= line_height
-
-        p.save()
+        response = HttpResponse(buffer.read(), content_type='application/pdf')
+        filename = f"lesson_{lesson_id}.pdf"
+        response['Content-Disposition'] = f'attachment; filename="{filename}"'
         return response
-
-    return render(request, 'pdftext.html')
+    return render(request, 'download_notes.html')
 
 
 
@@ -344,6 +327,7 @@ def ask_openai(message):
 
 def chatbot(request):
     if not request.session.get('Email'):
+        messages.success(request, "Please login first to start chat with your Personal AI.")
         return redirect('login')
     email = request.session.get('Email')
     user  = get_object_or_404(Userregister, email=email)
@@ -361,14 +345,17 @@ def chatbot(request):
 
 
 def download_audio(request, lesson_id):
-    content = Lesson.objects.get(id=lesson_id)
-    print(content)
+    lesson = Lesson.objects.get(id=lesson_id)
+    text=lesson.pdf_material
+    content = re.sub(r"<[^>]+>","", text)
     return render(request,"download_audio.html", {'content':content})
 
 
 def download_notes(request, lesson_id):
-    content = Lesson.objects.get(id=lesson_id)
-    return render(request,"download_notes.html", {'content':content})
+    lesson = Lesson.objects.get(id=lesson_id)
+    text=lesson.pdf_material
+    content = re.sub(r"<[^>]+>","", text)
+    return render(request,"download_notes.html", {'lesson':lesson, 'content':content})
 
 
 def my_certificates(request):
@@ -428,15 +415,14 @@ def forgot_password(request):
     else:
         return redirect('login')
 
-    # Look up the user or 404
     user = get_object_or_404(Userregister, email=email)
 
-    # Generate & save new password
+    # Generate password
     new_pass = generate_random_password(6)
     user.password = new_pass
     user.save()
 
-    # Email the new password
+    # mail new password
     send_mail(
         subject='Your New Password',
         message=(
@@ -452,7 +438,6 @@ def forgot_password(request):
         fail_silently=False,
     )
 
-    # Flash a one-time success message
     return render(request, "send_password.html", {"user":user})
 
 def change_password(request):

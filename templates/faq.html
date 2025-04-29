@@ -181,7 +181,7 @@
 <!-- FAQ End -->
 
 
-<div class="section section-padding-02 mt-n1" id="ai">
+<div class="section section-padding bg-light mt-n1" id="ai">
     <div class="container">
 
         <!-- Section Title Start -->
@@ -199,6 +199,9 @@
                 {% if user %}
                 <iframe src="https://technolearn.onrender.com/chatbot" height="500" class="rounded w-100"
                     allowfullscreen></iframe>
+                    <div class="courses-btn text-center">
+            <a href="/course_list" class="btn btn-secondary btn-hover-primary">Clear your doubt now !</a>
+        </div>
                 {% else %}
                 <div class="position-relative w-100">
                     <iframe src="https://technolearn.onrender.com/chatbot" height="500" class="rounded w-100"
@@ -208,7 +211,9 @@
                             Please Login to Access
                         </a>
                     </div>
-                </div>
+                </div><div class="courses-btn text-center">
+            <a href="/course_list" class="btn btn-secondary btn-hover-primary">Try Now !</a>
+        </div>
                 {% endif %}
             </div>
         </div>
