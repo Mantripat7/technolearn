@@ -264,11 +264,14 @@ def courses(request):
 
 
 def  create_checkout_session(request,course_id):
-    course=Course.objects.get(id=course_id)
     if not request.session.get('Email'):
         return render(request,'login.html')
+    
+    course=Course.objects.get(id=course_id)
+    if MCQQuestion.objects.filter(lesson__module__course__id=course_id).exists():
 
-    session =stripe.checkout.Session.create(
+
+        session =stripe.checkout.Session.create(
         payment_method_types=['card'],
         line_items =[{
             'price_data':{
@@ -284,7 +287,9 @@ def  create_checkout_session(request,course_id):
         success_url=f"https://technolearn.onrender.com/payment_success/{course_id}",
         cancel_url = f"https://technolearn.onrender.com/payment_failed/",
     )
-    return redirect(session.url)
+        return redirect(session.url)
+    else:
+        return render(request, "under_progress.html")
 
 
 

@@ -210,19 +210,44 @@
                     </div>
                     <!-- Sidebar Widget Information End -->
 
-                    <!-- Sidebar Widget Share Start -->
-                    <div class="sidebar-widget">
-                        <h4 class="widget-title">Share Course:</h4>
+  
+                            <!-- Sidebar Widget Share Start -->
+                            <div class="sidebar-widget">
+                                <h4 class="widget-title">Share Course:</h4>
 
-                        <ul class="social">
-                            <li><a href="#"><i class="flaticon-facebook"></i></a></li>
-                            <li><a href="#"><i class="flaticon-linkedin"></i></a></li>
-                            <li><a href="#"><i class="flaticon-twitter"></i></a></li>
-                            <li><a href="#"><i class="flaticon-skype"></i></a></li>
-                            <li><a href="#"><i class="flaticon-instagram"></i></a></li>
-                        </ul>
-                    </div>
-                    <!-- Sidebar Widget Share End -->
+                                <ul class="social">
+                                    <li><a href="#"
+                                            onclick="navigator.clipboard.writeText('https://technolearn.onrender.com/course_detail/{{course.id}}').then(()=>alert('Link copied!')); return false;"
+                                            title="Copy link">
+                                            <i class="fa fa-chrome"></i></a></li>
+
+
+                                    <li><a
+                                            href="https://www.facebook.com/sharer/sharer.php?u=https://technolearn.onrender.com/course_detail/{{course.id}}"><i
+                                                class="fa fa-facebook"></i></a></li>
+
+
+                                    <li><a href="https://www.linkedin.com/feed/?shareActive=true&shareUrl=https://technolearn.onrender.com/course_detail/{{ course.id }}/"
+                                            target="_blank" rel="noopener noreferrer" title="Share on LinkedIn"><i
+                                                class="flaticon-linkedin"></i></a></li>
+
+
+                                    <li><a href="https://x.com/intent/post?url=https://technolearn.onrender.com/course_detail/{{ course.id }}/&text={{ course.title }}"
+                                            target="_blank" rel="noopener noreferrer" title="Tweet this course"><i
+                                                class="flaticon-twitter"></i></a></li>
+
+
+
+
+
+                                    <li><a href="https://www.instagram.com/share?url=https://technolearn.onrender.com/course_detail/{{ course.id }}/"
+                                            target="_blank" rel="noopener noreferrer" title="Follow us on Instagram"><i
+                                                class="flaticon-instagram"></i></a></li>
+
+
+                                </ul>
+                            </div>
+                            <!-- Sidebar Widget Share End -->
 
                     
 
