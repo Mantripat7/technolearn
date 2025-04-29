@@ -205,9 +205,9 @@ def module_detail(request,module_id):
 
     if request.method == 'POST':
         lesson_id = request.POST.get('lesson_id')
-        lesson    = get_object_or_404(Lesson, id=lesson_id)
-        mcqs      = lesson.mcqs.all()
-        total   = mcqs.count()
+        lesson  = get_object_or_404(Lesson, id=lesson_id)
+        mcqs  = lesson.mcqs.all()
+        total  = mcqs.count()
         correct = 0
         for q in mcqs:
             ans = request.POST.get(f'question_{q.id}')
@@ -348,6 +348,7 @@ def download_audio(request, lesson_id):
     lesson = Lesson.objects.get(id=lesson_id)
     text=lesson.pdf_material
     content = re.sub(r"<[^>]+>","", text)
+    content=' '.join(content.split())
     return render(request,"download_audio.html", {'content':content})
 
 
@@ -355,6 +356,7 @@ def download_notes(request, lesson_id):
     lesson = Lesson.objects.get(id=lesson_id)
     text=lesson.pdf_material
     content = re.sub(r"<[^>]+>","", text)
+    content=' '.join(content.split())
     return render(request,"download_notes.html", {'lesson':lesson, 'content':content})
 
 
@@ -625,8 +627,6 @@ def contact(request):
         return redirect('thanks')
 
     return render(request, "contact.html")
-
-
 
 def logout_view(request):
     request.session.pop('Email', None)
