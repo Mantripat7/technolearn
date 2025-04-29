@@ -197,8 +197,9 @@ def module_detail(request,module_id):
     modules = course.module_set.all()
 
     lesson= module.lesson_set.first()
-    mcqs=lesson.mcqs.all()
-    if not mcqs:
+    if lesson.mcqs.all():
+        mcqs=lesson.mcqs.all()
+    else:
         mcqs=""
     
     user_certified =  modules.count() == LessonTestResult.objects.filter(user=user, course=course).count()
