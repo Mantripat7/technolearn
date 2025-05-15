@@ -35,7 +35,8 @@ def faq(request):
         user  = get_object_or_404(Userregister, email = email)
     else:
         user=False
-    return render(request,'faq.html' , {'user': user})
+        email=False
+    return render(request,'faq.html' , {'user': user, 'email':email})
 
 
 def login(request):
@@ -189,13 +190,9 @@ def module_detail(request,module_id):
     # module
     request.session['module_id'] = module_id
     module =get_object_or_404(Module,id=module_id)
-
-    # course
+ 
     course = module.course
-
-    # all module
     modules = course.module_set.all()
-
     lesson= module.lesson_set.first()
     if lesson.mcqs.all():
         mcqs=lesson.mcqs.all()
@@ -254,8 +251,13 @@ def thanks(request):
 
 def index(request):
     email = request.session.get('Email')
+    if Userregister.objects.filter(email=email).exists():
+        user  = Userregister.objects.filter(email=email).first()
+    else:
+        user = False
+        email = False
     courses = Course.objects.all()[:9]
-    return render(request, 'index.html', { 'email': email, 'courses':courses})
+    return render(request, 'index.html', { 'email': email, 'courses':courses,'user':user})
 
 
 def courses(request):
