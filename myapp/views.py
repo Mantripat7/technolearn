@@ -267,7 +267,7 @@ def courses(request):
 
 def  create_checkout_session(request,course_id):
     if not request.session.get('Email'):
-        return render(request,'login.html')
+        return redirect('login')
     
     course=Course.objects.get(id=course_id)
     if MCQQuestion.objects.filter(lesson__module__course__id=course_id).exists():
